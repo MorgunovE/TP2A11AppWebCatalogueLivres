@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author 1
+ * @author Evgenii Morgunov
  */
 
 import jakarta.persistence.*;
