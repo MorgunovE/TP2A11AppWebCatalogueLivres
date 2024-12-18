@@ -15,7 +15,8 @@ CREATE TABLE Livre (
     title VARCHAR(255),
     description TEXT,
     author VARCHAR(255),
-    genre VARCHAR(255)
+    genre VARCHAR(255),
+    image VARCHAR(255) -- New column for image URL
 );
 
 CREATE TABLE Basket (
