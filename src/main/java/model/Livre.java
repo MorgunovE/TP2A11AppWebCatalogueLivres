@@ -13,7 +13,7 @@ import jakarta.persistence.*;
 
 /**
  * Classe représentant un livre dans le système.
- * Chaque livre a un identifiant unique, un titre, une description, un auteur et un genre.
+ * Chaque livre a un identifiant unique, un titre, une description, un auteur, un genre, une image, un prix et une quantité.
  */
 @Entity
 public class Livre {
@@ -25,6 +25,8 @@ public class Livre {
     private String author;
     private String genre;
     private String image;
+    private double price;
+    private int quantity;
 
     /**
      * Constructeur sans argument.
@@ -40,13 +42,17 @@ public class Livre {
      * @param author l'auteur du livre
      * @param genre le genre du livre
      * @param image l'image du livre
+     * @param price le prix du livre
+     * @param quantity la quantité du livre
      */
-    public Livre(String title, String description, String author, String genre, String image) {
+    public Livre(String title, String description, String author, String genre, String image, double price, int quantity) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.genre = genre;
         this.image = image;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     /**
@@ -157,9 +163,59 @@ public class Livre {
         this.image = image;
     }
 
+    /**
+     * Obtient le prix du livre.
+     *
+     * @return le prix du livre
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * Définit le prix du livre.
+     *
+     * @param price le prix du livre
+     */
+    public void setPrice(double price) {
+        try {
+            if (price < 0) {
+                throw new IllegalArgumentException("Le prix ne peut pas être inférieur à 0");
+            }
+            this.price = price;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Obtient la quantité du livre.
+     *
+     * @return la quantité du livre
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Définit la quantité du livre.
+     *
+     * @param quantity la quantité du livre
+     */
+    public void setQuantity(int quantity) {
+        try {
+            if (quantity < 0) {
+                throw new IllegalArgumentException("La quantité ne peut pas être inférieure à 0");
+            }
+            this.quantity = quantity;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
-        return String.format("Livre{id=%d, title='%s', description='%s', author='%s', genre='%s', image='%s'}",
-                id, title, description, author, genre, image);
+        return String.format("Livre{id=%d, title='%s', description='%s', author='%s', genre='%s', image='%s', price=%.2f, quantity=%d}",
+                id, title, description, author, genre, image, price, quantity);
     }
 }
