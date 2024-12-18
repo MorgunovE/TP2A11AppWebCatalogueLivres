@@ -18,15 +18,13 @@ import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
 
-public class CatalogPersistenceUnit implements
-        PersistenceUnitInfo {
+public class CatalogPersistenceUnit implements PersistenceUnitInfo {
     protected static final String DB_HOST = "localhost";
     protected static final String DB_NAME = "CatalogDB";
     protected static final String DB_USER = "root";
     protected static final String DB_PASS = "root";
     protected static final String DB_PORT = "3306";
-    protected static final String DB_URL = "jdbc:mysql://"
-            + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
+    protected static final String DB_URL = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
 
     @Override
     public String getPersistenceUnitName() {
@@ -60,7 +58,7 @@ public class CatalogPersistenceUnit implements
 
     @Override
     public List<URL> getJarFileUrls() {
-        return List.of();
+        return Collections.emptyList();
     }
 
     @Override
@@ -97,21 +95,11 @@ public class CatalogPersistenceUnit implements
         Properties properties = new Properties();
 
         // JDBC properties
-        properties
-                .setProperty("javax.persistence.jdbc.user", DB_USER);
-        properties.
-                setProperty("javax.persistence.jdbc.password", DB_PASS);
-        properties
-                .setProperty("javax.persistence.jdbc.url", DB_URL);
-        properties
-                .setProperty("javax.persistence.jdbc.driver",
-                        "com.mysql.cj.jdbc.Driver");
-        properties.
-                setProperty("javax.persistence.schema-generation" +
-                        ".database.action", "update");
-        properties
-                .setProperty("hibernate.dialect",
-                        "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("jakarta.persistence.jdbc.url", DB_URL);
+        properties.setProperty("jakarta.persistence.jdbc.user", DB_USER);
+        properties.setProperty("jakarta.persistence.jdbc.password", DB_PASS);
+        properties.setProperty("jakarta.persistence.jdbc.driver", "com.mysql.cj.jdbc.Driver");
+        properties.setProperty("jakarta.persistence.schema-generation.database.action", "update");
 
         // Hibernate properties
         properties.setProperty("hibernate.format_sql", "false");
