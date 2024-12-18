@@ -6,7 +6,7 @@ package service;
 
 /**
  *
- * @author 1
+ * @author Evgenii Morgunov
  */
 
 import DAL.BasketDAO_JPA;

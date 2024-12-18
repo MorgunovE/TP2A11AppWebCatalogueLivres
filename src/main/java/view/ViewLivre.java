@@ -6,7 +6,7 @@ package view;
 
 /**
  *
- * @author 1
+ * @author Evgenii Morgunov
  */
 import model.Livre;
 import service.LivreService;
