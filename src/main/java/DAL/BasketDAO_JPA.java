@@ -33,9 +33,14 @@ public class BasketDAO_JPA implements IDAO<Basket> {
 
     @Override
     public void create(Basket basket) {
-        em.getTransaction().begin();
-        em.persist(basket);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(basket);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -52,16 +57,26 @@ public class BasketDAO_JPA implements IDAO<Basket> {
 
     @Override
     public void update(Basket basket) {
-        em.getTransaction().begin();
-        em.merge(basket);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.merge(basket);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Basket basket) {
-        em.getTransaction().begin();
-        em.remove(em.contains(basket) ? basket : em.merge(basket));
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.remove(em.contains(basket) ? basket : em.merge(basket));
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     public List<Basket> findByUserId(Long userId) {
