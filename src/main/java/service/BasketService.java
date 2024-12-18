@@ -15,26 +15,93 @@ import model.Basket;
 
 import java.util.List;
 
+/**
+ * Service pour gérer les opérations liées aux paniers.
+ * Cette classe utilise un DAO pour accéder aux données des paniers.
+ */
 public class BasketService {
     private IDAO<Basket> basketDAO = new BasketDAO_JPA();
 
+    /**
+     * Crée un nouveau panier.
+     *
+     * @param basket le panier à créer
+     */
     public void createBasket(Basket basket) {
-        basketDAO.create(basket);
+        try {
+            basketDAO.create(basket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Trouve un panier par son identifiant.
+     *
+     * @param id l'identifiant du panier
+     * @return le panier trouvé, ou null en cas d'erreur
+     */
     public Basket findBasketById(Long id) {
-        return basketDAO.findById(id);
+        try {
+            return basketDAO.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
+    /**
+     * Trouve tous les paniers.
+     *
+     * @return la liste de tous les paniers, ou null en cas d'erreur
+     */
     public List<Basket> findAllBaskets() {
-        return basketDAO.findAll();
+        try {
+            return basketDAO.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
+    /**
+     * Met à jour un panier.
+     *
+     * @param basket le panier à mettre à jour
+     */
     public void updateBasket(Basket basket) {
-        basketDAO.update(basket);
+        try {
+            basketDAO.update(basket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Supprime un panier.
+     *
+     * @param basket le panier à supprimer
+     */
     public void deleteBasket(Basket basket) {
-        basketDAO.delete(basket);
+        try {
+            basketDAO.delete(basket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Trouve les paniers par l'identifiant de l'utilisateur.
+     *
+     * @param userId l'identifiant de l'utilisateur
+     * @return la liste des paniers trouvés, ou null en cas d'erreur
+     */
+    public List<Basket> findBasketsByUserId(Long userId) {
+        try {
+            return ((BasketDAO_JPA) basketDAO).findByUserId(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
