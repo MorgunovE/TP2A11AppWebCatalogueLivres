@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
 
-public class CatalogPersistenceUnit implements PersistenceUnitInfo {
+public class CatalogPersistenceUnit implements
+        PersistenceUnitInfo {
     protected static final String DB_HOST = "localhost";
     protected static final String DB_NAME = "CatalogDB";
     protected static final String DB_USER = "root";
@@ -96,12 +97,21 @@ public class CatalogPersistenceUnit implements PersistenceUnitInfo {
         Properties properties = new Properties();
 
         // JDBC properties
-        properties.setProperty("javax.persistence.jdbc.user", DB_USER);
-        properties.setProperty("javax.persistence.jdbc.password", DB_PASS);
-        properties.setProperty("javax.persistence.jdbc.url", DB_URL);
-        properties.setProperty("javax.persistence.jdbc.driver", "com.mysql.cj.jdbc.Driver");
-        properties.setProperty("javax.persistence.schema-generation.database.action", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties
+                .setProperty("javax.persistence.jdbc.user", DB_USER);
+        properties.
+                setProperty("javax.persistence.jdbc.password", DB_PASS);
+        properties
+                .setProperty("javax.persistence.jdbc.url", DB_URL);
+        properties
+                .setProperty("javax.persistence.jdbc.driver",
+                        "com.mysql.cj.jdbc.Driver");
+        properties.
+                setProperty("javax.persistence.schema-generation" +
+                        ".database.action", "update");
+        properties
+                .setProperty("hibernate.dialect",
+                        "org.hibernate.dialect.MySQLDialect");
 
         // Hibernate properties
         properties.setProperty("hibernate.format_sql", "false");
