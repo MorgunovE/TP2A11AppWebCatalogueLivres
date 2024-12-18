@@ -3,88 +3,103 @@ package DAL;
 import model.Livre;
 import model.User;
 import model.Basket;
+import service.BasketService;
+import service.LivreService;
+import service.UserService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DAOTempTest {
     public static void main(String[] args) {
-        // Test LivreDAO_JPA test passed
-        LivreDAO_JPA livreDAO5 = new LivreDAO_JPA();
-        Livre livre5 = new Livre("Test Title", "Test Description", "Test Author", "Test Genre", "test_image.jpg");
-        livreDAO5.create(livre5);
-        System.out.println("Created Livre: " + livre5);
+        // Initialize services
+        LivreService livreService = new LivreService();
+        UserService userService = new UserService();
+        BasketService basketService = new BasketService();
 
-        Livre foundLivre = livreDAO5.findById(livre5.getId());
+        // Test LivreService
+        Livre livre = new Livre("Test Title", "Test Description", "Test Author", "Test Genre", "test_image.jpg", 10.99, 5);
+        livreService.createLivre(livre);
+        System.out.println("Created Livre: " + livre);
+
+        Livre foundLivre = livreService.findLivreById(livre.getId());
         System.out.println("Found Livre: " + foundLivre);
 
         foundLivre.setTitle("Updated Title");
-        livreDAO5.update(foundLivre);
-        System.out.println("Updated Livre: " + livreDAO5.findById(foundLivre.getId()));
+        livreService.updateLivre(foundLivre);
+        System.out.println("Updated Livre: " + livreService.findLivreById(foundLivre.getId()));
 
-        livreDAO5.delete(foundLivre);
-        System.out.println("Deleted Livre: " + livreDAO5.findById(foundLivre.getId()));
+        List<Livre> livresByTitle = livreService.findLivresByTitle("Updated Title");
+        System.out.println("Livres by Title: " + livresByTitle);
 
-        // Test UserDAO_JPA test passed
-        UserDAO_JPA userDAO2 = new UserDAO_JPA();
-        User user2 = new User("Test", "User", "123-456-7890", "test.user@example.com");
-        userDAO2.create(user2);
-        System.out.println("Created User: " + user2);
+        List<Livre> livresByAuthor = livreService.findLivresByAuthor("Test Author");
+        System.out.println("Livres by Author: " + livresByAuthor);
 
-        User foundUser2 = userDAO2.findById(user2.getId());
-        System.out.println("Found User: " + foundUser2);
+        List<Livre> livresByGenre = livreService.findLivresByGenre("Test Genre");
+        System.out.println("Livres by Genre: " + livresByGenre);
 
-        foundUser2.setName("Updated Name");
-        userDAO2.update(foundUser2);
-        System.out.println("Updated User: " + userDAO2.findById(foundUser2.getId()));
+        List<Livre> livresByPrice = livreService.findLivresByPriceLessThanOrEqual(15.00);
+        System.out.println("Livres by Price: " + livresByPrice);
 
-        userDAO2.delete(foundUser2);
-        System.out.println("Deleted User: " + userDAO2.findById(foundUser2.getId()));
+        livreService.deleteLivre(foundLivre);
+        System.out.println("Deleted Livre: " + livreService.findLivreById(foundLivre.getId()));
 
-        // Test BasketDAO_JPA passed
-        LivreDAO_JPA livreDAO = new LivreDAO_JPA();
-
-        Livre livre1 = new Livre("Test Title 1", "Test Description 1", "Test Author 1", "Test Genre 1", "test_image1.jpg");
-        Livre livre2 = new Livre("Test Title 2", "Test Description 2", "Test Author 2", "Test Genre 2", "test_image2.jpg");
-        livreDAO.create(livre1);
-        livreDAO.create(livre2);
-
-        UserDAO_JPA userDAO = new UserDAO_JPA();
-
+        // Test UserService
         User user = new User("Test", "User", "123-456-7890", "test.user@example.com");
-        userDAO.create(user);
+        userService.createUser(user);
+        System.out.println("Created User: " + user);
 
-        BasketDAO_JPA basketDAO = new BasketDAO_JPA();
+        User foundUser = userService.findUserById(user.getId());
+        System.out.println("Found User: " + foundUser);
 
-        Basket basket = new Basket(user, Arrays.asList(livre1, livre2));
-        basketDAO.create(basket);
+        foundUser.setName("Updated Name");
+        userService.updateUser(foundUser);
+        System.out.println("Updated User: " + userService.findUserById(foundUser.getId()));
 
+        List<User> usersByNameAndFamilyName = userService.findUsersByNameAndFamilyName("Updated Name", "User");
+        System.out.println("Users by Name and Family Name: " + usersByNameAndFamilyName);
+
+        List<User> usersByTel = userService.findUsersByTel("123-456-7890");
+        System.out.println("Users by Tel: " + usersByTel);
+
+        List<User> usersByEmail = userService.findUsersByEmail("test.user@example.com");
+        System.out.println("Users by Email: " + usersByEmail);
+
+        userService.deleteUser(foundUser);
+        System.out.println("Deleted User: " + userService.findUserById(foundUser.getId()));
+
+        // Test BasketService
+        Livre livre1 = new Livre("Test Title 1", "Test Description 1", "Test Author 1", "Test Genre 1", "test_image1.jpg", 10.99, 5);
+        Livre livre2 = new Livre("Test Title 2", "Test Description 2", "Test Author 2", "Test Genre 2", "test_image2.jpg", 8.99, 3);
+        livreService.createLivre(livre1);
+        livreService.createLivre(livre2);
+
+        User user1 = new User("Test", "User1", "123-456-7890", "test.user1@example.com");
+        userService.createUser(user1);
+
+        Basket basket = new Basket(user1, Arrays.asList(livre1, livre2));
+        basketService.createBasket(basket);
         System.out.println("Created Basket: " + basket);
 
-        Basket foundBasket = basketDAO.findById(basket.getId());
+        Basket foundBasket = basketService.findBasketById(basket.getId());
         System.out.println("Found Basket: " + foundBasket);
 
-        Livre livre3 = new Livre("Test Title 3", "Test Description 3", "Test Author 3", "Test Genre 3", "test_image3.jpg");
-        livreDAO.create(livre3);
-        foundBasket.setLivres(new ArrayList<>(Arrays.asList(livre1, livre2, livre3)));
-        basketDAO.update(foundBasket);
-        System.out.println("Updated Basket: " + basketDAO.findById(foundBasket.getId()));
+        Livre livre3 = new Livre("Test Title 3", "Test Description 3", "Test Author 3", "Test Genre 3", "test_image3.jpg", 12.99, 7);
+        livreService.createLivre(livre3);
+        foundBasket.setLivres(Arrays.asList(livre1, livre2, livre3));
+        basketService.updateBasket(foundBasket);
+        System.out.println("Updated Basket: " + basketService.findBasketById(foundBasket.getId()));
 
-        Livre livre4 = new Livre("Test Title 4", "Test Description 4", "Test Author 4", "Test Genre 4", "test_image4.jpg");
-        livreDAO.create(livre4);
-        Basket basket2 = new Basket(user, Arrays.asList(livre4));
-        basketDAO.create(basket2);
+        List<Basket> basketsByUser = basketService.findBasketsByUserId(user1.getId());
+        System.out.println("Baskets by User ID: " + basketsByUser);
 
-        System.out.println("Created Baskets: " + basket + ", " + basket2);
-
-        List<Basket> basketsByUser = basketDAO.findByUserId(user.getId());
-        System.out.println("Baskets found by user ID: " + basketsByUser);
-
-        basketDAO.delete(foundBasket);
-        System.out.println("Deleted Basket: " + basketDAO.findById(foundBasket.getId()));
-        basketDAO.delete(basket2);
-        System.out.println("Deleted Basket: " + basketDAO.findById(basket2.getId()));
+        basketService.deleteBasket(foundBasket);
+        System.out.println("Deleted Basket: " + basketService.findBasketById(foundBasket.getId()));
+        // Clean up
+        livreService.deleteLivre(livre1);
+        livreService.deleteLivre(livre2);
+        livreService.deleteLivre(livre3);
+        userService.deleteUser(user1);
 
     }
 }
