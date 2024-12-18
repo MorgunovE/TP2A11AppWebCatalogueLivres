@@ -10,6 +10,7 @@ package DAL;
  */
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.spi.PersistenceUnitInfo;
 import model.Basket;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -61,5 +62,11 @@ public class BasketDAO_JPA implements IDAO<Basket> {
         em.getTransaction().begin();
         em.remove(em.contains(basket) ? basket : em.merge(basket));
         em.getTransaction().commit();
+    }
+
+    public List<Basket> findByUserId(Long userId) {
+        TypedQuery<Basket> query = em.createQuery("SELECT b FROM Basket b WHERE b.user.id = :userId", Basket.class);
+        query.setParameter("userId", userId);
+        return query.getResultList();
     }
 }
