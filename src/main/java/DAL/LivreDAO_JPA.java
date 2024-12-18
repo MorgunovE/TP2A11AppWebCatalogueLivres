@@ -46,8 +46,8 @@ public class LivreDAO_JPA implements IDAO<Livre> {
     @Override
     public List<Livre> findAll() {
         return em
-                .createQuery("SELECT l FROM Livre l", Livre.class)
-                .getResultList();
+                .createQuery("SELECT l FROM Livre l",
+                        Livre.class).getResultList();
     }
 
     @Override
