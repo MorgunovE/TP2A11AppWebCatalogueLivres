@@ -13,18 +13,38 @@ import service.LivreService;
 
 import java.util.List;
 
+/**
+ * Vue pour afficher les informations des livres.
+ * Cette classe utilise un service pour accéder aux données des livres.
+ */
 public class ViewLivre {
     private LivreService livreService = new LivreService();
 
+    /**
+     * Affiche tous les livres.
+     */
     public void displayAllLivres() {
-        List<Livre> livres = livreService.findAllLivres();
-        for (Livre livre : livres) {
-            System.out.println(livre);
+        try {
+            List<Livre> livres = livreService.findAllLivres();
+            for (Livre livre : livres) {
+                System.out.println(livre);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Affiche un livre par son identifiant.
+     *
+     * @param id l'identifiant du livre
+     */
     public void displayLivreById(Long id) {
-        Livre livre = livreService.findLivreById(id);
-        System.out.println(livre);
+        try {
+            Livre livre = livreService.findLivreById(id);
+            System.out.println(livre);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
