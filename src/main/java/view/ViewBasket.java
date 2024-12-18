@@ -13,18 +13,38 @@ import service.BasketService;
 
 import java.util.List;
 
+/**
+ * Vue pour afficher les informations des paniers.
+ * Cette classe utilise un service pour accéder aux données des paniers.
+ */
 public class ViewBasket {
     private BasketService basketService = new BasketService();
 
+    /**
+     * Affiche tous les paniers.
+     */
     public void displayAllBaskets() {
-        List<Basket> baskets = basketService.findAllBaskets();
-        for (Basket basket : baskets) {
-            System.out.println(basket);
+        try {
+            List<Basket> baskets = basketService.findAllBaskets();
+            for (Basket basket : baskets) {
+                System.out.println(basket);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Affiche un panier par son identifiant.
+     *
+     * @param id l'identifiant du panier
+     */
     public void displayBasketById(Long id) {
-        Basket basket = basketService.findBasketById(id);
-        System.out.println(basket);
+        try {
+            Basket basket = basketService.findBasketById(id);
+            System.out.println(basket);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
