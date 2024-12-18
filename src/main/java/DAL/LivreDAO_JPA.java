@@ -11,6 +11,7 @@ package DAL;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.spi.PersistenceUnitInfo;
 import model.Livre;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -33,9 +34,14 @@ public class LivreDAO_JPA implements IDAO<Livre> {
 
     @Override
     public void create(Livre livre) {
-        em.getTransaction().begin();
-        em.persist(livre);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(livre);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -52,15 +58,57 @@ public class LivreDAO_JPA implements IDAO<Livre> {
 
     @Override
     public void update(Livre livre) {
-        em.getTransaction().begin();
-        em.merge(livre);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.merge(livre);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Livre livre) {
-        em.getTransaction().begin();
-        em.remove(em.contains(livre) ? livre : em.merge(livre));
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.remove(em.contains(livre) ? livre : em.merge(livre));
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
+    }
+
+    public List<Livre> findByTitle(String title) {
+        TypedQuery<Livre> query = em
+                .createQuery("SELECT l FROM Livre l " +
+                        "WHERE l.title = :title", Livre.class);
+        query.setParameter("title", title);
+        return query.getResultList();
+    }
+
+    public List<Livre> findByAuthor(String author) {
+        TypedQuery<Livre> query = em
+                .createQuery("SELECT l FROM Livre l " +
+                        "WHERE l.author = :author", Livre.class);
+        query.setParameter("author", author);
+        return query.getResultList();
+    }
+
+    public List<Livre> findByGenre(String genre) {
+        TypedQuery<Livre> query = em
+                .createQuery("SELECT l FROM Livre l " +
+                        "WHERE l.genre = :genre", Livre.class);
+        query.setParameter("genre", genre);
+        return query.getResultList();
+    }
+
+    public List<Livre> findByPriceLessThanOrEqual(double price) {
+        TypedQuery<Livre> query = em
+                .createQuery("SELECT l FROM Livre l " +
+                        "WHERE l.price <= :price", Livre.class);
+        query.setParameter("price", price);
+        return query.getResultList();
     }
 }
