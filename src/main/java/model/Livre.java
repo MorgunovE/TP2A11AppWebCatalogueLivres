@@ -24,6 +24,7 @@ public class Livre {
     private String description;
     private String author;
     private String genre;
+    private String image;
 
     /**
      * Constructeur sans argument.
@@ -38,12 +39,14 @@ public class Livre {
      * @param description la description du livre
      * @param author l'auteur du livre
      * @param genre le genre du livre
+     * @param image l'image du livre
      */
-    public Livre(String title, String description, String author, String genre) {
+    public Livre(String title, String description, String author, String genre, String image) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.genre = genre;
+        this.image = image;
     }
 
     /**
@@ -136,9 +139,27 @@ public class Livre {
         this.genre = genre;
     }
 
+    /**
+     * Obtient l'image du livre.
+     *
+     * @return l'image du livre
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * Définit l'image du livre.
+     *
+     * @param image l'image du livre
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
-        return String.format("Livre{id=%d, title='%s', description='%s', author='%s', genre='%s'}",
-                id, title, description, author, genre);
+        return String.format("Livre{id=%d, title='%s', description='%s', author='%s', genre='%s', image='%s'}",
+                id, title, description, author, genre, image);
     }
 }
