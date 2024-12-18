@@ -26,6 +26,11 @@ public class Basket {
     private User user;
 
     @ManyToMany
+    @JoinTable(
+            name = "Basket_Livre",
+            joinColumns = @JoinColumn(name = "basket_id"),
+            inverseJoinColumns = @JoinColumn(name = "livre_id")
+    )
     private List<Livre> livres;
 
     /**
