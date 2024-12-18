@@ -13,18 +13,38 @@ import service.UserService;
 
 import java.util.List;
 
+/**
+ * Vue pour afficher les informations des utilisateurs.
+ * Cette classe utilise un service pour accéder aux données des utilisateurs.
+ */
 public class ViewUser {
     private UserService userService = new UserService();
 
+    /**
+     * Affiche tous les utilisateurs.
+     */
     public void displayAllUsers() {
-        List<User> users = userService.findAllUsers();
-        for (User user : users) {
-            System.out.println(user);
+        try {
+            List<User> users = userService.findAllUsers();
+            for (User user : users) {
+                System.out.println(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Affiche un utilisateur par son identifiant.
+     *
+     * @param id l'identifiant de l'utilisateur
+     */
     public void displayUserById(Long id) {
-        User user = userService.findUserById(id);
-        System.out.println(user);
+        try {
+            User user = userService.findUserById(id);
+            System.out.println(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
