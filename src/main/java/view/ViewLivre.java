@@ -18,6 +18,10 @@ import java.util.List;
  * Cette classe utilise un service pour accéder aux données des livres.
  */
 public class ViewLivre {
+
+    /**
+     * Le service pour accéder aux données des livres.
+     */
     private LivreService livreService = new LivreService();
 
     /**
