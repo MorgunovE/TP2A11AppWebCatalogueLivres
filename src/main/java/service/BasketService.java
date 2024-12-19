@@ -20,6 +20,10 @@ import java.util.List;
  * Cette classe utilise un DAO pour accéder aux données des paniers.
  */
 public class BasketService {
+
+    /**
+     * Le DAO pour accéder aux données des paniers.
+     */
     private IDAO<Basket> basketDAO = new BasketDAO_JPA();
 
     /**
