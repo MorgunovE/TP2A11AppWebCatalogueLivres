@@ -17,7 +17,15 @@ import model.User;
 
 import java.util.List;
 
+/**
+ * Service pour gérer les opérations liées aux utilisateurs.
+ * Cette classe utilise un DAO pour accéder aux données des utilisateurs.
+ */
 public class UserService {
+
+    /**
+     * Le DAO pour accéder aux données des utilisateurs.
+     */
     private IDAO<User> userDAO = new UserDAO_JPA();
 
     /**
