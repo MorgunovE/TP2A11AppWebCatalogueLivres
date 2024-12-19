@@ -18,6 +18,10 @@ import java.util.List;
  * Cette classe utilise un service pour accéder aux données des paniers.
  */
 public class ViewBasket {
+
+    /**
+     * Le service pour accéder aux données des paniers.
+     */
     private BasketService basketService = new BasketService();
 
     /**
