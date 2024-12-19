@@ -18,6 +18,10 @@ import java.util.List;
  * Cette classe utilise un service pour accéder aux données des utilisateurs.
  */
 public class ViewUser {
+
+    /**
+     * Le service pour accéder aux données des utilisateurs.
+     */
     private UserService userService = new UserService();
 
     /**
