@@ -10,28 +10,31 @@ package DAL;
  */
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.spi.PersistenceUnitInfo;
 import model.User;
-import org.hibernate.jpa.HibernatePersistenceProvider;
-
-import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Classe UserDAO_JPA.
+ */
 public class UserDAO_JPA implements IDAO<User> {
+    /**
+     * L'entity manager.
+     */
     private EntityManager em;
 
+    /**
+     * Constructeur de la classe UserDAO_JPA.
+     */
     public UserDAO_JPA() {
-        PersistenceUnitInfo catalogPUInfo =
-                new CatalogPersistenceUnit();
-        EntityManagerFactory factory =
-                new HibernatePersistenceProvider()
-                        .createContainerEntityManagerFactory(catalogPUInfo,
-                                new HashMap<>());
-        this.em = factory.createEntityManager();
+        this.em = EM_Provider.getInstance().getEntityManager();
     }
 
+    /**
+     * Crée un utilisateur.
+     *
+     * @param user l'utilisateur à créer
+     */
     @Override
     public void create(User user) {
         try {
@@ -44,18 +47,34 @@ public class UserDAO_JPA implements IDAO<User> {
         }
     }
 
+    /**
+     * Trouve un utilisateur par son identifiant.
+     *
+     * @param id l'identifiant de l'utilisateur
+     * @return l'utilisateur trouvé, ou null en cas d'erreur
+     */
     @Override
     public User findById(Long id) {
         return em.find(User.class, id);
     }
 
+   /**
+     * Trouve tous les utilisateurs.
+     *
+     * @return la liste de tous les utilisateurs, ou null en cas d'erreur
+     */
     @Override
     public List<User> findAll() {
-        return em
-                .createQuery("SELECT u FROM User u", User.class)
-                .getResultList();
+        TypedQuery<User> query = em
+                .createQuery(SQL_BOX.FIND_ALL_USERS_JPQL, User.class);
+        return query.getResultList();
     }
 
+    /**
+     * Met à jour un utilisateur.
+     *
+     * @param user l'utilisateur à mettre à jour
+     */
     @Override
     public void update(User user) {
         try {
@@ -68,6 +87,11 @@ public class UserDAO_JPA implements IDAO<User> {
         }
     }
 
+    /**
+     * Supprime un utilisateur.
+     *
+     * @param user l'utilisateur à supprimer
+     */
     @Override
     public void delete(User user) {
         try {
@@ -90,9 +114,9 @@ public class UserDAO_JPA implements IDAO<User> {
     public List<User> findByNameAndFamilyName(String name,
                                               String familyName) {
         TypedQuery<User> query = em
-                .createQuery("SELECT u FROM User u " +
-                        "WHERE u.name = :name AND " +
-                        "u.familyName = :familyName", User.class);
+                .createQuery(SQL_BOX.
+                        FIND_USER_BY_NAME_AND_FAMILY_NAME_JPQL,
+                        User.class);
         query.setParameter("name", name);
         query.setParameter("familyName", familyName);
         return query.getResultList();
@@ -106,8 +130,8 @@ public class UserDAO_JPA implements IDAO<User> {
      */
     public List<User> findByTel(String tel) {
         TypedQuery<User> query = em
-                .createQuery("SELECT u FROM User u " +
-                        "WHERE u.tel = :tel", User.class);
+                .createQuery(SQL_BOX.FIND_USER_BY_TEL_JPQL,
+                        User.class);
         query.setParameter("tel", tel);
         return query.getResultList();
     }
@@ -120,8 +144,8 @@ public class UserDAO_JPA implements IDAO<User> {
      */
     public List<User> findByEmail(String email) {
         TypedQuery<User> query = em
-                .createQuery("SELECT u FROM User u " +
-                        "WHERE u.email = :email", User.class);
+                .createQuery(SQL_BOX.FIND_USER_BY_EMAIL_JPQL,
+                        User.class);
         query.setParameter("email", email);
         return query.getResultList();
     }
