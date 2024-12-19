@@ -13,7 +13,15 @@ import model.Livre;
 
 import java.util.List;
 
+/**
+ * Service pour gérer les opérations liées aux livres.
+ * Cette classe utilise un DAO pour accéder aux données des livres.
+ */
 public class LivreService {
+
+    /**
+     * Le DAO pour accéder aux données des livres.
+     */
     private IDAO<Livre> livreDAO = new LivreDAO_JPA();
 
     /**
