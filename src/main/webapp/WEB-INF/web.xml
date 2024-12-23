@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-   version="4.0">
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+        <servlet-name>adminLogin</servlet-name>
+        <servlet-class>control.AdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LivreController</servlet-name>
+        <servlet-class>control.LivreController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModifierLivreServlet</servlet-name>
+        <servlet-class>control.ModifierLivreServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SupprimerLivreServlet</servlet-name>
+        <servlet-class>control.SupprimerLivreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminLogin</servlet-name>
+        <url-pattern>/adminLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LivreController</servlet-name>
+        <url-pattern>/LivreController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModifierLivreServlet</servlet-name>
+        <url-pattern>/ModifierLivreServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupprimerLivreServlet</servlet-name>
+        <url-pattern>/SupprimerLivreServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>html/index.html</welcome-file>
+    </welcome-file-list>
 </web-app>
