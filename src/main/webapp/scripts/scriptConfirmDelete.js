@@ -36,5 +36,6 @@ function confirmDelete(id) {
               }
             });
         }
-    });
+    })
 }
+</script>
