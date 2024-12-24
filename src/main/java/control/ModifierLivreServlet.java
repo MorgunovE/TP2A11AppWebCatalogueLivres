@@ -59,7 +59,8 @@ public class ModifierLivreServlet extends HttpServlet {
    
         long id = Long.parseLong(request.getParameter("id"));
      
-        Livre livre = LivreService.findLivreById(id);
+        LivreService livreService = new LivreService();
+        Livre livre = livreService.findLivreById(id);
         
         request.setAttribute("livre", livre);
         request.getRequestDispatcher("/jsp/editLivre.jsp").forward(request, response);
@@ -86,6 +87,7 @@ public class ModifierLivreServlet extends HttpServlet {
 
         Livre livre = new Livre(title, description, author, genre, image, price, quantity); 
 
+        LivreService livreService = new LivreService();
         livreService.updateLivre(livre); 
 
         

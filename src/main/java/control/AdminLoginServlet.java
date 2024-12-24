@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  *
@@ -82,18 +83,20 @@ public class AdminLoginServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String enteredPassword = request.getParameter("password");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-        // get hash from bd
-        String storedHash = ""; // 
-
-        // Проверка пароля
-        boolean isPasswordCorrect = checkPassword(enteredPassword, storedHash);
-
-        if (isPasswordCorrect) {
+        // check password using method checkPassword
+        if (checkPassword(password, username)) {
+           
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            // redirect to admin page
             response.sendRedirect("adminPage.jsp");
         } else {
-            response.sendRedirect("index.html?error=invalid_password"); 
+            // wrong password
+            request.setAttribute("errorMessage", "Wrong password");
+            request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
         }
    
     }

@@ -58,7 +58,8 @@ public class LivreController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get all livres
-        List<Livre> livres = LivreService.findAllLivres();
+        LivreService livreService = new LivreService();
+        List<Livre> livres = livreService.findAllLivres();
         request.setAttribute("livres", livres);
         request.getRequestDispatcher("/jsp/adminPage.js").forward(request, response);
     }

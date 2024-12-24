@@ -17,6 +17,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Livre;
+import service.LivreService;
 
 /**
  *
@@ -76,49 +78,21 @@ public class SupprimerLivreServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/catalogdb", "root", "root"); 
-        try {
-        int livreId = Integer.parseInt(request.getParameter("id"));
-        
-        String sql = "DELETE FROM livres WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, livreId);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            
-            response.getWriter().println("Erreur lors de la suppression du livre.");
-            e.printStackTrace(); 
-            return; 
-        }
- 
-            response.getWriter().println("Livre supprimé avec succès"); 
-
-        } catch (NumberFormatException e) {
-        
-            response.getWriter().println("ID livre invalide.");
-            e.printStackTrace();
-        } finally {
-            
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-            
-            /**
-             * Returns a short description of the servlet.
-             *
-             * @return a String containing servlet description
-             */
-            @Override
-            public String getServletInfo() {
-            return "Short description";
-        }// </editor-fold>
-        } catch (SQLException ex) {
-            Logger.getLogger(SupprimerLivreServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
+            int livreId = Integer.parseInt(request.getParameter("id"));
+            LivreService livreService = new LivreService();
+            Livre livre = livreService.findLivreById(Long.valueOf(livreId));
+            livreService.deleteLivre(livre);
+            response.getWriter().println("Livre supprimé avec succès");         
+    }   
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

@@ -18,6 +18,7 @@
             <th>ID</th>
             <th>Title</th>
             <th>Author</th>
+            <th>price</th>
             </tr>
     </thead>
     <tbody>
@@ -29,7 +30,7 @@
                 <td>${livre.price}</td>
                 <td>
                     <a href="/editLivre?id=${livre.id}">Modifier</a>
-                    <a href="/deleteLivre?id=${livre.id}">Supprimer</a>
+                    <a href="#" onclick="confirmDelete(${livre.id})">Supprimer</a>
                     <script src="scriptConfirmDelete.js"></script>
                 </td>
                 </tr>

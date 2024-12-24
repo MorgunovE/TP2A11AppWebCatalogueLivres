@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-
+<a href="#" onclick="confirmDelete(${livre.id})">Supprimer</a>
+<script>
 function confirmDelete(id) {
     Swal.fire({
         title: 'Sure?',
