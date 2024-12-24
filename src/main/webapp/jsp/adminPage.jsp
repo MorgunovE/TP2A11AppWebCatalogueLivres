@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>Admin Page</title>
-    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
