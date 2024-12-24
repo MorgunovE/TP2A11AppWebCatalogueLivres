@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin Login Page</title>
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
         <form action="AdminLoginServlet" method="POST">

@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>EditLivrePage</title>
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
         <form action="/editLivre" method="POST">
