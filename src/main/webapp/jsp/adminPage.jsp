@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>Admin Page</title>
+    <link rel="stylesheet" href="/styles.css">
+    <a href="users.jsp">Admin</a>
 </head>
 <body>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
