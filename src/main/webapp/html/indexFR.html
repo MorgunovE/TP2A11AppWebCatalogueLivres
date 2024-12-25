@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue de Livres - Nouvelle Version</title>
+    <link rel="stylesheet" href="../styles/styleIndexPages.css">
+</head>
+<body>
+    <header>
+        <div class="container-menu">
+            <div class="menu-bar">
+                <a href="#home"><img src="../images/book_logo.png"
+                                        alt="Logo du Catalogue de Livres"></a>
+                <span class="menu-toggle">Menu</span>
+                <nav class="menu-nav">
+                    <ul>
+                        <li><a href="">Catalogue</a></li>
+                        <li><a href="">Compte</a></li>
+                        <li><a href="">Paiement</a></li>
+                        <li><a href="">Administration</a></li>
+                    </ul>
+                </nav>
+                <a href="../index.html" class="btn">EN</a>
+            </div>
+            <nav class="menu-nav-mobile">
+                <ul>
+                    <li><a href="">Catalogue</a></li>
+                    <li><a href="">Compte</a></li>
+                    <li><a href="">Paiement</a></li>
+                    <li><a href="">Administration</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="main-block">
+            <div class="container_main-block">
+                <div class="text-block">
+                    <h1>Catalogue de Livres</h1>
+                    <p>Un endroit idéal pour découvrir et apprécier des livres.</p>
+                    <ul>
+                        <li>Collection étendue</li>
+                        <li>Offres spéciales</li>
+                        <li>Histoires incroyables</li>
+                    </ul>
+                </div>
+                <div class="offer-block">
+                    <div class="container_slider">
+                        <div class="gallery-slider">
+                            <div class="gallery_main-block">
+                                <img src="../images/book_catalog.jpg"
+                                     alt="Catalogue de Livres">
+                                <img src="../images/user_account.jpg"
+                                     alt="Compte Utilisateur">
+                                <img src="../images/checkout.jpg"
+                                     alt="Paiement">
+                            </div>
+                            <button class="prev-btn_main-block">&#10094;</button>
+                            <button class="next-btn_main-block">&#10095;</button>
+                        </div>
+                    </div>
+                    <p class="text_offer-block">
+                      <strong>Profitez de notre offre spéciale: </strong>
+                    </p>
+                    <p class="text_offer-block">
+                      Achetez un livre et obtenez le deuxième à moitié prix!
+                    </p>
+                    <p class="text_offer-block">
+                      Valable jusqu'au <strong>31 août.</strong>
+                    </p>
+                    <a href="">
+                      <button class="btn_offer-block">Aller au Catalogue
+                      </button></a>
+                </div>
+            </div>
+        </section>
+
+        <h2 id="catalog">Catalogue</h2>
+        <section id="catalogSection" class="catalog-block white-bg">
+            <img src="../images/catalog.jpg" alt="Catalogue">
+            <div class="text-block">
+                <h3>Explorez notre vaste catalogue de livres</h3>
+                <p>Découvrez une large gamme de livres
+                  dans divers genres. Que vous recherchiez des romans,
+                  des livres non-fictionnels ou des livres académiques,
+                  notre catalogue a quelque chose pour tout le monde.
+                  Profitez des bienfaits de la lecture et plongez-vous
+                  dans des histoires et des connaissances incroyables.
+                </p>
+            </div>
+        </section>
+
+        <section id="account" class="catalog-block grey-bg">
+            <div class="text-block">
+                <h3>Gérez votre compte utilisateur</h3>
+                <p>Suivez vos commandes, votre liste de souhaits et
+                  vos informations personnelles. Notre section compte
+                  utilisateur vous permet de gérer vos préférences et de
+                  rester informé des dernières offres et recommandations.
+                </p>
+            </div>
+            <img src="../images/user_account.jpg"
+                 alt="Compte Utilisateur">
+        </section>
+
+        <section id="checkout" class="catalog-block white-bg">
+            <img src="../images/checkout.jpg" alt="Paiement">
+            <div class="text-block">
+                <h3>Profitez d'une expérience de paiement fluide</h3>
+                <p> Options de paiement sécurisées et livraison rapide.
+                    Joignez-vous à nous pour une expérience de paiement
+                    sans tracas et profitez de nos offres spéciales.
+                    Commandez vos livres préférés et recevez-les à votre
+                    porte en un rien de temps.
+                </p>
+            </div>
+        </section>
+
+        <section id="contacts" class="contact-block grey-bg">
+            <h2>Contacts</h2>
+            <div class="container_contact-block">
+                <div class="form-card">
+                    <h3>Formulaire de Contact</h3>
+                    <form action="/submit-form" method="post">
+                        <div class="form-group">
+                            <input type="text" id="name"
+                                   name="name" placeholder="*Nom et Prénom:"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone"
+                                   name="phone" placeholder="*Téléphone:"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email"
+                                   name="email" placeholder="*Email:"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message"
+                                      name="message" rows="4"
+                                      placeholder="Message:"></textarea>
+                        </div>
+                        <button type="submit"
+                                class="submit-btn">Envoyer</button>
+                    </form>
+                </div>
+                <div class="contact-info-card">
+                    <h3>Contactez-nous</h3>
+                    <p><strong>
+                      <span class="icon-clock"></span>
+                      Horaires d'ouverture:</strong></p>
+                    <p class="time">Lundi - Vendredi : 8h00 - 22h00</p>
+                    <p class="time">Samedi - Dimanche : 12h00 - 2h00</p>
+                    <p><strong>
+                      <span class="icon-address"></span>
+                      Adresse:</strong> 123 Rue du Livre, Montreal</p>
+                    <a href="tel:+33123456789"><p><strong>
+                      <span class="icon-phone"></span>
+                      Téléphone:</strong> +33 1 23 45 67 89</p></a>
+                    <a href="mailto:contact@cataloguedelivres.fr"><p>
+                      <strong><span class="icon-email"></span>
+                        Email:</strong> contact@cataloguedelivres.fr</p></a>
+                </div>
+                <div class="map">
+                    <img src="../images/book_map.jpg" alt="Carte">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <strong>2024</strong>
+          Catalogue de Livres. Tous droits réservés.</p>
+    </footer>
+
+    <div id="thank-you-modal" class="modal">
+        <div class="modal-content modal-content_center-mobile">
+            <span class="close-btn">&times;</span>
+            <h3>Merci pour votre message!</h3>
+            <button class="return-btn">Retour</button>
+        </div>
+    </div>
+
+    <script src="../scripts/scriptIndexPages.js"></script>
+</body>
+</html>
