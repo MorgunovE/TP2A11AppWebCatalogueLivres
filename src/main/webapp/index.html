@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Catalog - New Version</title>
+    <link rel="stylesheet" href="styles/styleIndexPages.css">
+</head>
+<body>
+    <header>
+        <div class="container-menu">
+            <div class="menu-bar">
+                <a href="#home">
+                    <img src="images/book_logo.png"
+                         alt="Book Catalog Logo"></a>
+                <span class="menu-toggle">Menu</span>
+                <nav class="menu-nav">
+                    <ul>
+                        <li><a href="">Catalog</a></li>
+                        <li><a href="">Account</a></li>
+                        <li><a href="">Checkout</a></li>
+                        <li><a href="">Administration</a></li>
+                    </ul>
+                </nav>
+                <a href="html/indexFR.html" class="btn">FR</a>
+            </div>
+            <nav class="menu-nav-mobile">
+                <ul>
+                    <li><a href="">Catalog</a></li>
+                    <li><a href="">Account</a></li>
+                    <li><a href="">Checkout</a></li>
+                    <li><a href="">Administration</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="main-block">
+            <div class="container_main-block">
+                <div class="text-block">
+                    <h1>Book Catalog</h1>
+                    <p>An ideal place to discover and enjoy books.</p>
+                    <ul>
+                        <li>Extensive collection</li>
+                        <li>Special offers</li>
+                        <li>Incredible stories</li>
+                    </ul>
+                </div>
+                <div class="offer-block">
+                    <div class="container_slider">
+                        <div class="gallery-slider">
+                            <div class="gallery_main-block">
+                                <img src="images/book_catalog.jpg"
+                                     alt="Book Catalog">
+                                <img src="images/user_account.jpg"
+                                     alt="User Account">
+                                <img src="images/checkout.jpg"
+                                     alt="Checkout">
+                            </div>
+                            <button
+                                    class="prev-btn_main-block">&#10094;
+                            </button>
+                            <button
+                                    class="next-btn_main-block">&#10095;
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text_offer-block">
+                        <strong>Enjoy our special offer: </strong></p>
+                    <p class="text_offer-block">
+                        Buy one book and get the second one at half price!
+                    </p>
+                    <p class="text_offer-block">Valid until
+                        <strong>31 August.</strong>
+                    </p>
+                    <a href=""><button class="btn_offer-block">
+                        Go to Catalog</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <h2 id="catalog">Catalog</h2>
+        <section id="catalogSection" class="catalog-block white-bg">
+            <img src="images/catalog.jpg" alt="Catalog">
+            <div class="text-block">
+                <h3>Explore our extensive book catalog</h3>
+                <p>Discover a wide range of books across various genres.
+                    Whether you are looking for fiction, non-fiction,
+                    or academic books, our catalog
+                    has something for everyone.
+                    Enjoy the benefits of reading and
+                    immerse yourself in incredible stories and knowledge.
+                </p>
+            </div>
+        </section>
+
+        <section id="account" class="catalog-block grey-bg">
+            <div class="text-block">
+                <h3>Manage your user account</h3>
+                <p>Keep track of your orders, wishlist,
+                    and personal information.
+                    Our user account section allows you to manage
+                    your preferences and stay updated with the
+                    latest offers and recommendations.
+                </p>
+            </div>
+            <img src="images/user_account.jpg" alt="User Account">
+        </section>
+
+        <section id="checkout" class="catalog-block white-bg">
+            <img src="images/checkout.jpg" alt="Checkout">
+            <div class="text-block">
+                <h3>Enjoy a seamless checkout experience</h3>
+                <p> Secure payment options and fast delivery. Enjoy
+                    a hassle-free shopping experience with our easy checkout process.
+                    Easily print your receipt or have it emailed to you for your records.
+                    Clear and transparent pricing with no hidden fees.
+                </p>
+            </div>
+        </section>
+
+        <section id="contacts" class="contact-block grey-bg">
+            <h2>Contacts</h2>
+            <div class="container_contact-block">
+                <div class="form-card">
+                    <h3>Contact Form</h3>
+                    <form action="/submit-form" method="post">
+                        <div class="form-group">
+                            <input type="text" id="name"
+                                   name="name"
+                                   placeholder="*Name and Surname:" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone"
+                                   name="phone"
+                                   placeholder="*Phone:" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email"
+                                   name="email"
+                                   placeholder="*Email:" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message"
+                                      name="message" rows="4"
+                                      placeholder="Message:"></textarea>
+                        </div>
+                        <button type="submit"
+                                class="submit-btn">Send</button>
+                    </form>
+                </div>
+                <div class="contact-info-card">
+                    <h3>Contact Us</h3>
+                    <p><strong>
+                        <span class="icon-clock"></span>
+                        Opening Hours:</strong></p>
+                    <p class="time">Monday - Friday: 8:00 AM - 10:00 PM</p>
+                    <p class="time">Saturday - Sunday: 12:00 PM - 2:00 AM</p>
+                    <p><strong>
+                        <span class="icon-address"></span>
+                        Address:</strong> 123 Rue du Livre, Montreal</p>
+                    <a href="tel:+33123456789">
+                        <p><strong>
+                            <span class="icon-phone"></span>
+                            Phone:</strong> +33 1 23 45 67 89
+                        </p></a>
+                    <a href="mailto:contact@bookcatalog.fr">
+                        <p><strong>
+                            <span class="icon-email"></span>
+                            Email:</strong> contact@bookcatalog.fr</p></a>
+                </div>
+                <div class="map">
+                    <img src="images/book_map.jpg" alt="Map">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <strong>2024</strong> Book Catalog. All rights reserved.</p>
+    </footer>
+
+    <div id="thank-you-modal" class="modal">
+        <div class="modal-content modal-content_center-mobile">
+            <span class="close-btn">&times;</span>
+            <h3>Thank you for your message!</h3>
+            <button class="return-btn">Return</button>
+        </div>
+    </div>
+
+    <script src="scripts/scriptIndexPages.js"></script>
+</body>
+</html>
