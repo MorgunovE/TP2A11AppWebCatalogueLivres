@@ -6,38 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <link rel="stylesheet" href="/styles.css">
-    <a href="users.jsp">Admin</a>
 </head>
 <body>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>price</th>
-            </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${livres}" var="livre">
-            <tr>
-                <td>${livre.id}</td>
-                <td>${livre.title}</td>
-                <td>${livre.author}</td>
-                <td>${livre.price}</td>
-                <td>
-                    <a href="/editLivre?id=${livre.id}">Modifier</a>
-                    <a href="#" onclick="confirmDelete(${livre.id})">Supprimer</a>
-                    <script src="scriptConfirmDelete.js"></script>
-                </td>
-                </tr>
-        </c:forEach>
-    </tbody>
-</table>
+    <h1>Admin Page</h1>
+    <!-- Users and books pages links -->
+    <a href="books.jsp">Books</a>
+    <a href="users.jsp">Users</a>
 </body>
 </html>

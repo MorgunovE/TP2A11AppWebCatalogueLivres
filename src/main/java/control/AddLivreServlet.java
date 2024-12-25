@@ -6,14 +6,8 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +18,8 @@ import service.LivreService;
  *
  * @author user
  */
-public class SupprimerLivreServlet extends HttpServlet {
+@WebServlet("/AddLivreServlet")
+public class AddLivreServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +38,10 @@ public class SupprimerLivreServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SupprimerLivreServlet</title>");            
+            out.println("<title>Servlet AddLivreServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SupprimerLivreServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddLivreServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -78,15 +73,22 @@ public class SupprimerLivreServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        long id = Long.parseLong(request.getParameter("id"));
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        String author = request.getParameter("author");
+        String genre = request.getParameter("genre");
+        String image = request.getParameter("image");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        Livre livre = new Livre(title, description, author, genre, image, price, quantity);
 
         LivreService livreService = new LivreService();
-        Livre livre = livreService.findLivreById(id);
-        livreService.deleteLivre(livre);
+        livreService.createLivre(livre);
 
-        response.setContentType("text/plain");
-        response.getWriter().write("Success");
-    }  
+        response.sendRedirect("books.jsp");
+    }
+
     /**
      * Returns a short description of the servlet.
      *

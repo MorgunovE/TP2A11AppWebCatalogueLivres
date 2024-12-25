@@ -1,10 +1,3 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
- */
-
-<a href="#" onclick="confirmDelete(${livre.id})">Supprimer</a>
-<script>
 function confirmDelete(id) {
     Swal.fire({
         title: 'Sure?',
@@ -19,7 +12,7 @@ function confirmDelete(id) {
         if (result.isConfirmed) {
             // send AJAX-request to server for delete livre
             $.ajax({
-                url: '/deleteLivre',
+                url: '/deleteLivre', // URL for call to SupprimerLivreServlet
                 data: { id: id },
                 type: 'POST',
                 success: function() {
@@ -28,14 +21,13 @@ function confirmDelete(id) {
                     location.reload();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Something is wrong'
-                });
-              }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something is wrong'
+                    });
+                }
             });
         }
-    })
+    });
 }
-</script>

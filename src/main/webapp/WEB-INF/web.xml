@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>LivreController</servlet-name>
-        <servlet-class>control.LivreController</servlet-class>
+        <servlet-class>control.BooksSearchServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ModifierLivreServlet</servlet-name>
@@ -15,6 +15,10 @@
     <servlet>
         <servlet-name>SupprimerLivreServlet</servlet-name>
         <servlet-class>control.SupprimerLivreServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddLivreServlet</servlet-name>
+        <servlet-class>control.AddLivreServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>SupprimerLivreServlet</servlet-name>
         <url-pattern>/SupprimerLivreServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddLivreServlet</servlet-name>
+        <url-pattern>/AddLivreServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

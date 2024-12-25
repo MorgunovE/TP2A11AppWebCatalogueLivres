@@ -18,7 +18,7 @@ import service.LivreService;
  *
  * @author user
  */
-public class LivreController extends HttpServlet {
+public class BooksSearchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,12 +56,15 @@ public class LivreController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // get all livres
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String searchParam = request.getParameter("search");
+        long livreId = Long.parseLong(searchParam);
+
         LivreService livreService = new LivreService();
-        List<Livre> livres = livreService.findAllLivres();
-        request.setAttribute("livres", livres);
-        request.getRequestDispatcher("/jsp/adminPage.js").forward(request, response);
+        Livre livre = livreService.findLivreById(livreId);
+        request.setAttribute("livre", livre);
+        request.getRequestDispatcher("books.jsp").forward(request, response);
     }
 
     /**

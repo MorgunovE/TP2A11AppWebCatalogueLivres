@@ -91,7 +91,7 @@ public class ModifierLivreServlet extends HttpServlet {
         livreService.updateLivre(livre); 
 
         
-        response.sendRedirect("livres");
+        response.sendRedirect("/jsp/books.jsp");
     }
     /**
      * Returns a short description of the servlet.
