@@ -42,7 +42,7 @@
                     <li><a href="CatalogServlet"><fmt:message key="header.catalog"/></a></li>
                     <li><a href=""><fmt:message key="header.account"/></a></li>
                     <li><a href=""><fmt:message key="header.checkout"/></a></li>
-                    <li><a href=""><fmt:message key="header.administration"/></a></li>
+                    <li><a href="AdminServlet"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
             <form method="get" action="CatalogServlet">
@@ -55,7 +55,7 @@
                 <li><a href="CatalogServlet"><fmt:message key="header.catalog"/></a></li>
                 <li><a href=""><fmt:message key="header.account"/></a></li>
                 <li><a href=""><fmt:message key="header.checkout"/></a></li>
-                <li><a href=""><fmt:message key="header.administration"/></a></li>
+                <li><a href="AdminServlet"><fmt:message key="header.administration"/></a></li>
             </ul>
         </nav>
     </div>
