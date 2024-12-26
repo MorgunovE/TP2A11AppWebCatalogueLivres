@@ -4,9 +4,33 @@
         <servlet-name>CatalogServlet</servlet-name>
         <servlet-class>control.CatalogServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>control.AdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminErrorServlet</servlet-name>
+        <servlet-class>control.AdminErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminPortalServlet</servlet-name>
+        <servlet-class>control.AdminPortalServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminErrorServlet</servlet-name>
+        <url-pattern>/AdminErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPortalServlet</servlet-name>
+        <url-pattern>/AdminPortalServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
