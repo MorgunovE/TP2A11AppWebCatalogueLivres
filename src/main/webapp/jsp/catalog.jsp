@@ -34,7 +34,7 @@
 <header>
     <div class="container-menu">
         <div class="menu-bar">
-            <a href="../index.html"><img src="images/book_logo.png"
+            <a href="/TP2A11AppWebCatalogueLivres/index.html"><img src="images/book_logo.png"
                                          alt="Book Catalog Logo"></a>
             <span class="menu-toggle">Menu</span>
             <nav class="menu-nav">
