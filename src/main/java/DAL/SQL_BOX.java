@@ -41,15 +41,15 @@ public class SQL_BOX {
 
     // sql pour trouver un livre par son titre
     public static final String FIND_LIVRE_BY_TITLE_JPQL =
-            "SELECT l FROM Livre l WHERE l.title = :title";
+            "SELECT l FROM Livre l WHERE l.title LIKE :title";
 
     // sql pour trouver un livre par son auteur
     public static final String FIND_LIVRE_BY_AUTHOR_JPQL =
-            "SELECT l FROM Livre l WHERE l.author = :author";
+            "SELECT l FROM Livre l WHERE l.author LIKE :author";
 
     // sql pour trouver un livre par son genre
     public static final String FIND_LIVRE_BY_GENRE_JPQL =
-            "SELECT l FROM Livre l WHERE l.genre = :genre";
+            "SELECT l FROM Livre l WHERE l.genre LIKE :genre";
 
     // sql pour trouver un livre par son prix
     public static final String

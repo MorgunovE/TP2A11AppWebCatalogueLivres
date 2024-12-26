@@ -115,7 +115,7 @@ public class LivreDAO_JPA implements IDAO<Livre> {
         TypedQuery<Livre> query = em
                 .createQuery(SQL_BOX.FIND_LIVRE_BY_TITLE_JPQL,
                         Livre.class);
-        query.setParameter("title", title);
+        query.setParameter("title", "%" + title + "%");
         return query.getResultList();
     }
 
@@ -129,7 +129,7 @@ public class LivreDAO_JPA implements IDAO<Livre> {
         TypedQuery<Livre> query = em
                 .createQuery(SQL_BOX.FIND_LIVRE_BY_AUTHOR_JPQL,
                         Livre.class);
-        query.setParameter("author", author);
+        query.setParameter("author", "%" + author + "%");
         return query.getResultList();
     }
 
@@ -143,7 +143,7 @@ public class LivreDAO_JPA implements IDAO<Livre> {
         TypedQuery<Livre> query = em
                 .createQuery(SQL_BOX.FIND_LIVRE_BY_GENRE_JPQL,
                         Livre.class);
-        query.setParameter("genre", genre);
+        query.setParameter("genre", "%" + genre + "%");
         return query.getResultList();
     }
 
