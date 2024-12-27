@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : catalog
     Created on : Dec 25, 2024, 6:02:57 PM
     Author     : Evgenii Morgunov
@@ -29,8 +29,10 @@
 <header>
     <div class="container-menu">
         <div class="menu-bar">
-            <a href="/TP2A11AppWebCatalogueLivres/index.html"><img src="images/book_logo.png"
-                                         alt="Book Catalog Logo"></a>
+            <a href="/TP2A11AppWebCatalogueLivres/<%= "fr_FR"
+            .equals(locale) ? "html/indexFR" : "index" %>.html"><img
+                    src="images/book_logo.png"
+                    alt="Book Catalog Logo"></a>
             <span class="menu-toggle">Menu</span>
             <nav class="menu-nav">
                 <ul>
