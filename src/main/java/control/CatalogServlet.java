@@ -67,19 +67,27 @@ public class CatalogServlet extends HttpServlet {
          */
         request.setAttribute("Language", locale.getLanguage());
 
-        /**
-         * Pays de l'utilisateur.
-         */
-        request.setAttribute("Country", locale.getCountry());
-
-        /**
-         * Code ISO du pays de l'utilisateur.
-         */
-        request.setAttribute("isoCountry", locale.getISO3Country());
-
         RequestDispatcher rd = request
                 .getRequestDispatcher("/jsp/catalog.jsp");
         rd.forward(request, response);
+    }
+
+    private void setUserAndLocaleAttributes(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        request.setAttribute("userName", userName);
+        String locale = request.getParameter("locale");
+        String language = request.getParameter("Language");
+        if ("fr_FR".equals(locale)) {
+            locale = "fr_FR";
+        } else if ("en_US".equals(locale)) {
+            locale = "en_US";
+        } else if ("fr".equals(language)) {
+            locale = "fr_FR";
+        } else {
+            locale = "en_US";
+        }
+        request.setAttribute("locale", locale);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -96,18 +104,12 @@ public class CatalogServlet extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
-        /**
-         * Session de l'utilisateur.
-         */
-        HttpSession session = request.getSession();
-        String userName = (String) session
-                .getAttribute("userName");
+        setUserAndLocaleAttributes(request);
 
         if (request.getAttribute("livres") == null) {
             List<Livre> livres = livreService.findAllLivres();
             request.setAttribute("livres", livres);
         }
-        request.setAttribute("userName", userName);
 
         request.getRequestDispatcher("/jsp/catalog.jsp")
                 .forward(request, response);
@@ -153,8 +155,10 @@ public class CatalogServlet extends HttpServlet {
             if (livres != null) {
                 request.setAttribute("livres", livres);
             }
+
         }
 
+        setUserAndLocaleAttributes(request);
         doGet(request, response);
     }
 
