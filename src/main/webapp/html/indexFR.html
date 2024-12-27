@@ -15,20 +15,40 @@
                 <span class="menu-toggle">Menu</span>
                 <nav class="menu-nav">
                     <ul>
-                        <li><a href="../CatalogServlet?locale=fr_FR">Catalogue</a></li>
+                        <li>
+                            <form action="../CatalogServlet" method="get">
+                                <input type="hidden" name="locale" value="fr_FR"/>
+                                <button type="submit">Catalogue</button>
+                            </form>
+                        </li>
                         <li><a href="">Compte</a></li>
                         <li><a href="">Paiement</a></li>
-                        <li><a href="../AdminServlet?locale=fr_FR">Administration</a></li>
+                        <li>
+                            <form action="../AdminServlet" method="get">
+                                <input type="hidden" name="locale" value="fr_FR"/>
+                                <button type="submit">Administration</button>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
                 <a href="../index.html" class="btn">EN</a>
             </div>
             <nav class="menu-nav-mobile">
                 <ul>
-                    <li><a href="../CatalogServlet?locale=fr_FR">Catalogue</a></li>
+                    <li>
+                        <form action="../CatalogServlet" method="get">
+                            <input type="hidden" name="locale" value="fr_FR"/>
+                            <button type="submit">Catalogue</button>
+                        </form>
+                    </li>
                     <li><a href="">Compte</a></li>
                     <li><a href="">Paiement</a></li>
-                    <li><a href="../AdminServlet?locale=fr_FR">Administration</a></li>
+                    <li>
+                        <form action="../AdminServlet" method="get">
+                            <input type="hidden" name="locale" value="fr_FR"/>
+                            <button type="submit">Administration</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -70,9 +90,10 @@
                     <p class="text_offer-block">
                       Valable jusqu'au <strong>31 août.</strong>
                     </p>
-                    <a href="../CatalogServlet?locale=fr_FR">
-                      <button class="btn_offer-block">Aller au Catalogue
-                      </button></a>
+                    <form action="../CatalogServlet" method="get">
+                        <input type="hidden" name="locale" value="fr_FR"/>
+                        <button type="submit" class="btn_offer-block">Aller au Catalogue</button>
+                    </form>
                 </div>
             </div>
         </section>
