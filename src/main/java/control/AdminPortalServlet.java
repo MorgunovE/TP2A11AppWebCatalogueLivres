@@ -46,19 +46,24 @@ public class AdminPortalServlet extends HttpServlet {
          */
         request.setAttribute("Language", locale.getLanguage());
 
-        /**
-         * Pays de l'utilisateur.
-         */
-        request.setAttribute("Country", locale.getCountry());
-
-        /**
-         * Code ISO du pays de l'utilisateur.
-         */
-        request.setAttribute("isoCountry", locale.getISO3Country());
-
         RequestDispatcher rd = request
                 .getRequestDispatcher("WEB-INF/adminPortal.jsp");
         rd.forward(request, response);
+    }
+
+    private void setLocaleAttributes(HttpServletRequest request) {
+        String locale = request.getParameter("locale");
+        String language = request.getParameter("Language");
+        if ("fr_FR".equals(locale)) {
+            locale = "fr_FR";
+        } else if ("en_US".equals(locale)) {
+            locale = "en_US";
+        } else if ("fr".equals(language)) {
+            locale = "fr_FR";
+        } else {
+            locale = "en_US";
+        }
+        request.setAttribute("locale", locale);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,6 +78,8 @@ public class AdminPortalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        setLocaleAttributes(request);
 
         if (request.getAttribute("livres") == null) {
             List<Livre> livres = livreService.findAllLivres();
@@ -146,6 +153,7 @@ public class AdminPortalServlet extends HttpServlet {
             livreService.createLivre(livre);
         }
 
+        setLocaleAttributes(request);
         doGet(request, response);
     }
 
