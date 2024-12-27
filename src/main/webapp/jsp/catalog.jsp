@@ -1,7 +1,7 @@
 <%-- 
     Document   : catalog
     Created on : Dec 25, 2024, 6:02:57 PM
-    Author     : 1
+    Author     : Evgenii Morgunov
 --%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
