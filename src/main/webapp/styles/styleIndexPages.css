@@ -637,6 +637,23 @@ footer p {
     color: white;
 }
 
+/* Style for the inline form button in the navigation menu */
+.menu-nav form button,
+.menu-nav-mobile form button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: medium;
+}
+.offer-block form,
+.menu-nav form,
+.menu-nav-mobile form {
+    display: inline-block;
+}
 /* Media queries for responsive design */
 @media (max-width: 1150px) {
     h1 {
@@ -674,8 +691,13 @@ footer p {
         padding: 10px;
     }
 
-    .menu-nav-mobile ul li a {
+    .menu-nav-mobile ul li a,
+    .menu-nav form button,
+    .menu-nav-mobile form button{
         font-size: 26px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
     }
 
     .menu-nav-mobile.expanded {
