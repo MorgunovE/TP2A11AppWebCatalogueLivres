@@ -11,25 +11,20 @@
 <%
     String userName = (String) session.getAttribute("userName");
     String locale = request.getParameter("locale");
-    if (locale == null) {
-        locale = "en_US";
-    }
 %>
 <!DOCTYPE html>
+<fmt:setLocale value="${param.locale != null ? param.locale : 'en_US'}"/>
+<fmt:bundle basename="ressources_i18n.Messages_${param.locale != null
+? param.locale : 'en_US'}">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Book Catalog</title>
+    <title><fmt:message key="title.BookCatalog"/></title>
     <link rel="stylesheet" href="styles/styleCatalogPage.css">
 </head>
 <body>
-
-<fmt:setLocale value="${param.locale != null ? param.locale : 'en_US'}"/>
-<fmt:bundle
-        basename="ressources_i18n.Messages_${param.locale != null
-        ? param.locale : 'en_US'}">
 
 <header>
     <div class="container-menu">
@@ -39,10 +34,10 @@
             <span class="menu-toggle">Menu</span>
             <nav class="menu-nav">
                 <ul>
-                    <li><a href="CatalogServlet"><fmt:message key="header.catalog"/></a></li>
+                    <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href=""><fmt:message key="header.account"/></a></li>
                     <li><a href=""><fmt:message key="header.checkout"/></a></li>
-                    <li><a href="AdminServlet"><fmt:message key="header.administration"/></a></li>
+                    <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
             <form method="get" action="CatalogServlet">
@@ -52,10 +47,10 @@
         </div>
         <nav class="menu-nav-mobile">
             <ul>
-                <li><a href="CatalogServlet"><fmt:message key="header.catalog"/></a></li>
+                <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                 <li><a href=""><fmt:message key="header.account"/></a></li>
                 <li><a href=""><fmt:message key="header.checkout"/></a></li>
-                <li><a href="AdminServlet"><fmt:message key="header.administration"/></a></li>
+                <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
             </ul>
         </nav>
     </div>
@@ -74,6 +69,7 @@
             <div class="filter-form">
                 <div class="card">
                     <form action="CatalogServlet" method="post">
+                        <input type="hidden" name="locale" value="<%= locale %>"/>
                         <label for="filterType" class="center-label"><fmt:message key="main.filterBy"/></label>
                         <select id="filterType" name="filterType">
                             <option value="title"><fmt:message key="main.titleOption"/></option>
