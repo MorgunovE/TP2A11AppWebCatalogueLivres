@@ -9,15 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String locale = request.getParameter("locale");
-    if (locale == null) {
-        locale = "en_US";
-    }
 %>
 <!DOCTYPE html>
 <fmt:setLocale value="${param.locale != null ? param.locale : 'en_US'}"/>
-<fmt:bundle
-        basename="ressources_i18n.Messages_${param.locale != null
-        ? param.locale : 'en_US'}">
+<fmt:bundle basename="ressources_i18n.Messages_${param.locale != null
+? param.locale : 'en_US'}">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,15 +27,17 @@
     <header>
         <div class="container-menu">
             <div class="menu-bar">
-                <a href="/TP2A11AppWebCatalogueLivres/index.html"><img src="images/book_logo.png"
-                                                                       alt="Book Catalog Logo"></a>
+                <a href="/TP2A11AppWebCatalogueLivres/<%= "fr_FR"
+            .equals(locale) ? "html/indexFR" : "index" %>.html"><img
+                        src="images/book_logo.png"
+                        alt="Book Catalog Logo"></a>
                 <span class="menu-toggle">Menu</span>
                 <nav class="menu-nav">
                     <ul>
-                        <li><a href="CatalogServlet"><fmt:message key="header.catalog"/></a></li>
+                        <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href=""><fmt:message key="header.account"/></a></li>
                         <li><a href=""><fmt:message key="header.checkout"/></a></li>
-                        <li><a href="AdminServlet"><fmt:message key="header.administration"/></a></li>
+                        <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
                 <form method="get" action="AdminPortalServlet">
@@ -49,10 +47,10 @@
             </div>
             <nav class="menu-nav-mobile">
                 <ul>
-                    <li><a href="CatalogServlet"><fmt:message key="header.catalog"/></a></li>
+                    <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href=""><fmt:message key="header.account"/></a></li>
                     <li><a href=""><fmt:message key="header.checkout"/></a></li>
-                    <li><a href="AdminServlet"><fmt:message key="header.administration"/></a></li>
+                    <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
         </div>
@@ -70,6 +68,7 @@
                 <div class="card">
                     <h3><fmt:message key="book.addBook"/></h3>
                     <form id="addBookForm" action="AdminPortalServlet" method="post">
+                        <input type="hidden" name="locale" value="<%= locale %>"/>
                         <label for="title" class="center-label"><fmt:message key="book.title"/></label>
                         <input type="text" id="title" name="title" required class="center-input input-correction">
 
@@ -100,6 +99,7 @@
             <div class="filter-form">
                 <div class="card">
                     <form action="AdminPortalServlet" method="post">
+                        <input type="hidden" name="locale" value="<%= locale %>"/>
                         <label for="filterType" class="center-label"><fmt:message key="main.filterBy"/></label>
                         <select id="filterType" name="filterType">
                             <option value="title"><fmt:message key="main.titleOption"/></option>
@@ -126,8 +126,8 @@
                         <p>${livre.price} USD</p>
                         <p><fmt:message key="main.quantity"/>: ${livre.quantity}</p>
                         <div class="btn-admin-portal">
-                            <a class="btn" href="UpdateBookServlet?id=${livre.id}"><fmt:message key="adminPortal.buttonUpdate"/></a>
-                            <a class="btn" href="DeleteBookServlet?id=${livre.id}"><fmt:message key="adminPortal.buttonDelete"/></a>
+                            <a class="btn" href="UpdateBookServlet?id=${livre.id}&locale=<%= locale %>"><fmt:message key="adminPortal.buttonUpdate"/></a>
+                            <a class="btn" href="DeleteBookServlet?id=${livre.id}&locale=<%= locale %>"><fmt:message key="adminPortal.buttonDelete"/></a>
                         </div>
                     </div>
                 </c:forEach>
