@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,19 +45,24 @@ public class AdminServlet extends HttpServlet {
          */
         request.setAttribute("Language", locale.getLanguage());
 
-        /**
-         * Pays de l'utilisateur.
-         */
-        request.setAttribute("Country", locale.getCountry());
-
-        /**
-         * Code ISO du pays de l'utilisateur.
-         */
-        request.setAttribute("isoCountry", locale.getISO3Country());
-
         RequestDispatcher rd = request
                 .getRequestDispatcher("/jsp/admin.jsp");
         rd.forward(request, response);
+    }
+
+    private void setLocaleAttributes(HttpServletRequest request) {
+        String locale = request.getParameter("locale");
+        String language = request.getParameter("Language");
+        if ("fr_FR".equals(locale)) {
+            locale = "fr_FR";
+        } else if ("en_US".equals(locale)) {
+            locale = "en_US";
+        } else if ("fr".equals(language)) {
+            locale = "fr_FR";
+        } else {
+            locale = "en_US";
+        }
+        request.setAttribute("locale", locale);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +77,9 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        setLocaleAttributes(request);
+
         request.getRequestDispatcher("/jsp/admin.jsp")
                 .forward(request, response);
     }
@@ -87,17 +96,17 @@ public class AdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        String locale = request.getParameter("locale");
 
         String destination = null;
 
         if (USERNAME.equals(userName) && PASSWORD.equals(password)) {
-            destination = "/AdminPortalServlet?locale=" + locale ;
+            destination = "/AdminPortalServlet";
         } else {
-            destination = "WEB-INF/errorAdmin.jsp?locale=" + locale;
+            destination = "/AdminErrorServlet";
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
+        setLocaleAttributes(request);
         dispatcher.forward(request, response);
     }
 
