@@ -649,6 +649,13 @@ footer p {
     font-weight: bold;
     font-size: medium;
 }
+
+.menu-nav form button:hover,
+.menu-nav-mobile form button:hover {
+    color: #e07f3b;
+    transition: color 0.3s ease;
+}
+
 .offer-block form,
 .menu-nav form,
 .menu-nav-mobile form {
