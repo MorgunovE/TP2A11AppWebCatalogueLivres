@@ -21,7 +21,12 @@
                                 <button type="submit">Catalogue</button>
                             </form>
                         </li>
-                        <li><a href="">Compte</a></li>
+                        <li>
+                            <form action="../AccountServlet" method="get">
+                                <input type="hidden" name="locale" value="fr_FR"/>
+                                <button type="submit">Compte</button>
+                            </form>
+                        </li>
                         <li><a href="">Paiement</a></li>
                         <li>
                             <form action="../AdminServlet" method="get">
@@ -41,7 +46,12 @@
                             <button type="submit">Catalogue</button>
                         </form>
                     </li>
-                    <li><a href="">Compte</a></li>
+                    <li>
+                        <form action="../AccountServlet" method="get">
+                            <input type="hidden" name="locale" value="fr_FR"/>
+                            <button type="submit">Compte</button>
+                        </form>
+                    </li>
                     <li><a href="">Paiement</a></li>
                     <li>
                         <form action="../AdminServlet" method="get">
