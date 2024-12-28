@@ -16,6 +16,22 @@
         <servlet-name>AdminPortalServlet</servlet-name>
         <servlet-class>control.AdminPortalServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountServlet</servlet-name>
+        <servlet-class>control.AccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountErrorServlet</servlet-name>
+        <servlet-class>control.AccountErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountPortalServlet</servlet-name>
+        <servlet-class>control.AccountPortalServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountErrorCreationServlet</servlet-name>
+        <servlet-class>control.AccountErrorCreationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -31,6 +47,22 @@
     <servlet-mapping>
         <servlet-name>AdminPortalServlet</servlet-name>
         <url-pattern>/AdminPortalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountServlet</servlet-name>
+        <url-pattern>/AccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountErrorServlet</servlet-name>
+        <url-pattern>/AccountErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountPortalServlet</servlet-name>
+        <url-pattern>/AccountPortalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountErrorCreationServlet</servlet-name>
+        <url-pattern>/AccountErrorCreationServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
