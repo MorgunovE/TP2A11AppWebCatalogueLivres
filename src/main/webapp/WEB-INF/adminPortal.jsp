@@ -9,6 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String locale = request.getParameter("locale");
+    String language = request.getParameter("Language");
+    if ("fr_FR".equals(locale)) {
+        locale = "fr_FR";
+    } else if ("en_US".equals(locale)) {
+        locale = "en_US";
+    } else if ("fr".equals(language)) {
+        locale = "fr_FR";
+    } else if (locale == null || locale.isEmpty()) {
+        locale = "en_US";
+    } else {
+        locale = "en_US";
+    }
 %>
 <!DOCTYPE html>
 <fmt:setLocale value="${param.locale != null ? param.locale : 'en_US'}"/>
@@ -35,7 +47,7 @@
                 <nav class="menu-nav">
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
-                        <li><a href=""><fmt:message key="header.account"/></a></li>
+                        <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
                         <li><a href=""><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
@@ -48,7 +60,7 @@
             <nav class="menu-nav-mobile">
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
-                    <li><a href=""><fmt:message key="header.account"/></a></li>
+                    <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
                     <li><a href=""><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
