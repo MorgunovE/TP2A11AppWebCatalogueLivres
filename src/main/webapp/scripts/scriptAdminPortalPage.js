@@ -9,17 +9,4 @@ document.addEventListener("DOMContentLoaded", function() {
     } else if (locale === 'fr_FR') {
         frButton.style.display = 'none';
     }
-
-    const price = document.getElementById('price').value;
-    const quantity = document.getElementById('quantity').value;
-
-    if (price < 0) {
-        alert('Price must be greater than or equal to 0');
-        event.preventDefault();
-    }
-
-    if (quantity < 0) {
-        alert('Quantity must be greater than or equal to 0');
-        event.preventDefault();
-    }
 });

@@ -68,6 +68,8 @@ public class AdminErrorServlet extends HttpServlet {
             locale = "en_US";
         } else if ("fr".equals(language)) {
             locale = "fr_FR";
+        } else if (locale == null || locale.isEmpty()) {
+            locale = "en_US";
         } else {
             locale = "en_US";
         }
