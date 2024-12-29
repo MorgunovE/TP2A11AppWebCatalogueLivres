@@ -31,7 +31,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="admin.title"/></title>
-    <link rel="stylesheet" href="styles/styleAdminPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
 
@@ -48,7 +48,7 @@
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                        <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                        <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
@@ -61,7 +61,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -82,9 +82,9 @@
                     <form action="AdminServlet" method="post">
                         <input type="hidden" name="locale" value="<%= locale %>"/>
                         <label for="userName"><fmt:message key="main.userName"/></label>
-                        <input type="text" id="userName" name="userName" required>
+                        <input class="input-correction" type="text" id="userName" name="userName" required>
                         <label for="password"><fmt:message key="main.password"/></label>
-                        <input type="password" id="password" name="password" required>
+                        <input class="input-correction" type="password" id="password" name="password" required>
                         <button type="submit"><fmt:message key="main.loginButton"/></button>
                     </form>
                     <p><fmt:message key="main.adminMessageFormTextAfter"/></p>
@@ -104,6 +104,6 @@
     </footer>
 
 </fmt:bundle>
-<script src="scripts/scriptAdminPage.js"></script>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
