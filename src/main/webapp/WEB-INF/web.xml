@@ -56,6 +56,14 @@
         <servlet-name>BasketSuccessServlet</servlet-name>
         <servlet-class>control.BasketSuccessServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>control.CheckoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrintCheckoutPdfServlet</servlet-name>
+        <servlet-class>control.PrintCheckoutPdfServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>BasketSuccessServlet</servlet-name>
         <url-pattern>/BasketSuccessServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/CheckoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintCheckoutPdfServlet</servlet-name>
+        <url-pattern>/PrintCheckoutPdfServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
