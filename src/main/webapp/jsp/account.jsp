@@ -29,7 +29,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="account.title"/></title>
-    <link rel="stylesheet" href="styles/styleAccountPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
     <header>
@@ -44,7 +44,7 @@
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                        <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                        <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
@@ -57,7 +57,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -82,19 +82,19 @@
         </section>
         <section class="account-block grey-bg">
             <h3><fmt:message key="account.createAccountMessage"/></h3>
-            <div class="account-form">
-                <div class="card">
+            <div class="account-form pb-20">
+                <div class="card ">
                     <h3><fmt:message key="account.createAccount"/></h3>
                     <form action="AccountServlet" method="post">
-                        <input type="hidden" name="locale" value="<%= locale %>"/>
+                        <input class="input-correction" type="hidden" name="locale" value="<%= locale %>"/>
                         <label for="name"><fmt:message key="account.name"/></label>
-                        <input type="text" id="name" name="name" required>
+                        <input class="input-correction" type="text" id="name" name="name" required>
                         <label for="familyName"><fmt:message key="account.familyName"/></label>
-                        <input type="text" id="familyName" name="familyName" required>
+                        <input class="input-correction" type="text" id="familyName" name="familyName" required>
                         <label for="tel"><fmt:message key="account.tel"/></label>
-                        <input type="tel" id="tel" name="tel" required>
+                        <input class="input-correction" type="tel" id="tel" name="tel" required>
                         <label for="email"><fmt:message key="account.email"/></label>
-                        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        <input class="input-correction" type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                         <button type="submit" name="action" value="create"><fmt:message key="account.createButton"/></button>
                     </form>
                     <p><fmt:message key="account.createAccountMessageText"/></p>
@@ -107,6 +107,6 @@
             <fmt:message key="footer.message"/></p>
     </footer>
 </fmt:bundle>
-<script src="scripts/scriptAccountPage.js"></script>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
