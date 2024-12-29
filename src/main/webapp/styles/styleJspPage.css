@@ -851,10 +851,12 @@ footer p {
 .card-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
 .card-container .card {
+    max-width: 430px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -874,6 +876,14 @@ footer p {
 
 .text-block-correct {
     padding-bottom: 450px !important;
+}
+
+.btn-checkout-portal {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 60px;
 }
 
 
@@ -1039,6 +1049,11 @@ footer p {
 @media (max-width: 600px) {
     .form-card {
         min-width: 90%; /* Minimum width */
+    }
+
+    .btn-checkout-portal {
+        flex-direction: column;
+        padding: 40px;
     }
 
     .contact-info-card {
