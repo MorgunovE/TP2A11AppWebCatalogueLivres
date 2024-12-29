@@ -35,7 +35,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="accountPortal.title"/></title>
-    <link rel="stylesheet" href="styles/styleAccountPortalPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
     <header>
@@ -50,7 +50,7 @@
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                        <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                        <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
@@ -63,7 +63,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -100,14 +100,13 @@
         <section class="account-block grey-bg">
             <div class="text-block">
                     <h3><fmt:message key="accountPortal.basketInfo"/></h3>
-                    <c:if test="${sessionScope.baskets == null}">
+                    <c:if test="${sessionScope.livres == null}">
                         <p><fmt:message key="accountPortal.noBaskets"/></p>
                     </c:if>
-                    <c:if test="${sessionScope.baskets != null}">
-                        <c:forEach var="basket" items="${sessionScope.baskets}">
-                            <h4><fmt:message key="accountPortal.basketId"/>: ${basket.id}</h4>
+                    <c:if test="${sessionScope.livres != null}">
+                            <h4><fmt:message key="accountPortal.basketId"/>: ${sessionScope.basketId}</h4>
                             <div class="card-container">
-                                <c:forEach var="livre" items="${basket.livres}">
+                                <c:forEach var="livre" items="${sessionScope.livres}">
                                     <div class="card">
                                         <p>
                                             <strong><fmt:message key="accountPortal.bookTitle"/>:</strong>
@@ -131,7 +130,6 @@
                                     </div>
                                 </c:forEach>
                             </div>
-                        </c:forEach>
                     </c:if>
                 </div>
         </section>
@@ -141,6 +139,6 @@
             <fmt:message key="footer.message"/></p>
     </footer>
 </fmt:bundle>
-<script src="scripts/scriptAccountPortalPage.js"></script>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
