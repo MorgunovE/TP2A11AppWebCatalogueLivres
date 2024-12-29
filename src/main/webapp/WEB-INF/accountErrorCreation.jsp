@@ -29,7 +29,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="accountErrorCreation.title"/></title>
-    <link rel="stylesheet" href="styles/styleAccountErrorCreationPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
     <header>
@@ -44,7 +44,7 @@
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                        <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                        <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
@@ -57,7 +57,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -66,7 +66,7 @@
     <main>
         <h1><fmt:message key="accountErrorCreation.title"/></h1>
         <section class="account-block white-bg">
-            <div class="text-block">
+            <div class="text-block text-block-correct">
                 <h3><fmt:message key="accountErrorCreation.message"/></h3>
                 <a class="btn" href="AccountServlet?locale=<%= locale %>"><fmt:message key="accountErrorCreation.returnButton"/></a>
             </div>
@@ -77,6 +77,6 @@
             <fmt:message key="footer.message"/></p>
     </footer>
 </fmt:bundle>
-<script src="scripts/scriptAccountErrorCreationPage.js"></script>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
