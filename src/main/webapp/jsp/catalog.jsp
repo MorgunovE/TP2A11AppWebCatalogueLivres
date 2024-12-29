@@ -11,6 +11,8 @@
 <%
     String name = (String) session.getAttribute("name");
     String familyName = (String) session.getAttribute("familyName");
+    Long userId = (Long) session.getAttribute("id");
+    Long basketId = (Long) session.getAttribute("basketId");
     String locale = request.getParameter("locale");
     String language = request.getParameter("Language");
     if ("fr_FR".equals(locale)) {
@@ -35,7 +37,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="title.BookCatalog"/></title>
-    <link rel="stylesheet" href="styles/styleCatalogPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
 
@@ -51,7 +53,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -64,7 +66,7 @@
             <ul>
                 <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                 <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                 <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
             </ul>
         </nav>
@@ -100,19 +102,24 @@
                 </div>
             </div>
         </section>
-        <section id="catalog-items" class="catalog-block white-bg">
+        <section id="catalog-items" class="catalog-block grey-bg">
             <div class="catalog-items">
-                <c:forEach var="livre" items="${livres}">
-                    <div class="card">
-                        <img src="images/livre/${livre.image}" alt="${livre.title}">
-                        <p><strong>${livre.title}</strong></p>
-                        <p>${livre.author}</p>
-                        <p>${livre.genre}</p>
-                        <p>${livre.price} USD</p>
-                        <p><fmt:message key="main.quantity"/>: ${livre.quantity}</p>
-                        <button class="btn" onclick="addToCart(${livre.id})"><fmt:message key="main.addToCart"/></button>
-                    </div>
-                </c:forEach>
+                <c:if test="${livres == null || livres.isEmpty()}">
+                    <p><fmt:message key="main.noBooksAvailable"/></p>
+                </c:if>
+                <c:if test="${livres != null && !livres.isEmpty()}">
+                    <c:forEach var="livre" items="${livres}">
+                        <div class="card">
+                            <img src="images/livre/${livre.image}" alt="${livre.title}">
+                            <p><strong>${livre.title}</strong></p>
+                            <p>${livre.author}</p>
+                            <p>${livre.genre}</p>
+                            <p>${livre.price} USD</p>
+                            <p><fmt:message key="main.quantity"/>: ${livre.quantity}</p>
+                            <a class="btn" href="BasketServlet?bookId=${livre.id}&userId=<%= userId%>&basketId=<%= basketId%>&locale=<%= locale %>"><fmt:message key="main.addToCart"/></a>
+                        </div>
+                    </c:forEach>
+                </c:if>
             </div>
         </section>
 </main>
@@ -123,6 +130,6 @@
 </footer>
 
 </fmt:bundle>
-    <script src="scripts/scriptCatalogPage.js"></script>
+    <script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
