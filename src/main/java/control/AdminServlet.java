@@ -50,23 +50,6 @@ public class AdminServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void setLocaleAttributes(HttpServletRequest request) {
-        String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
-        } else {
-            locale = "en_US";
-        }
-        request.setAttribute("locale", locale);
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -80,7 +63,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        setLocaleAttributes(request);
+        LocaleUtil.setLocaleAttributes(request);
 
         request.getRequestDispatcher("/jsp/admin.jsp")
                 .forward(request, response);
@@ -108,7 +91,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
-        setLocaleAttributes(request);
+        LocaleUtil.setLocaleAttributes(request);
         dispatcher.forward(request, response);
     }
 
