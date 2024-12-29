@@ -32,6 +32,30 @@
         <servlet-name>AccountErrorCreationServlet</servlet-name>
         <servlet-class>control.AccountErrorCreationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BasketServlet</servlet-name>
+        <servlet-class>control.BasketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginRequiredServlet</servlet-name>
+        <servlet-class>control.LoginRequiredServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookOutOfStockServlet</servlet-name>
+        <servlet-class>control.BookOutOfStockServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookAlreadyInBasketServlet</servlet-name>
+        <servlet-class>control.BookAlreadyInBasketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BasketErrorServlet</servlet-name>
+        <servlet-class>control.BasketErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BasketSuccessServlet</servlet-name>
+        <servlet-class>control.BasketSuccessServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -63,6 +87,30 @@
     <servlet-mapping>
         <servlet-name>AccountErrorCreationServlet</servlet-name>
         <url-pattern>/AccountErrorCreationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BasketServlet</servlet-name>
+        <url-pattern>/BasketServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginRequiredServlet</servlet-name>
+        <url-pattern>/LoginRequiredServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookOutOfStockServlet</servlet-name>
+        <url-pattern>/BookOutOfStockServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookAlreadyInBasketServlet</servlet-name>
+        <url-pattern>/BookAlreadyInBasketServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BasketErrorServlet</servlet-name>
+        <url-pattern>/BasketErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BasketSuccessServlet</servlet-name>
+        <url-pattern>/BasketSuccessServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
