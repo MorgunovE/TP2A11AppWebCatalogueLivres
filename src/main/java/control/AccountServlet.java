@@ -25,8 +25,14 @@ import javax.servlet.http.HttpSession;
  * @author Evgenii Morgunov
  */
 public class AccountServlet extends HttpServlet {
-    private UserService userService = new UserService();
-    private BasketService basketService = new BasketService();
+    private UserService userService;
+    private BasketService basketService;
+
+    @Override
+    public void init() throws ServletException {
+        userService = (UserService) getServletContext().getAttribute("userService");
+        basketService = (BasketService) getServletContext().getAttribute("basketService");
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,29 +56,11 @@ public class AccountServlet extends HttpServlet {
          * Langue de l'utilisateur.
          */
         request.setAttribute("Language", locale.getLanguage());
-        setLocaleAttributes(request);
 
         RequestDispatcher rd = request
                 .getRequestDispatcher("/jsp/account.jsp");
         rd.forward(request, response);
 
-    }
-
-    private void setLocaleAttributes(HttpServletRequest request) {
-        String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
-        } else {
-            locale = "en_US";
-        }
-        request.setAttribute("locale", locale);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,7 +75,8 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        setLocaleAttributes(request);
+
+        LocaleUtil.setLocaleAttributes(request);
 
         request.getRequestDispatcher("/jsp/account.jsp")
                 .forward(request, response);
@@ -137,6 +126,7 @@ public class AccountServlet extends HttpServlet {
                     session.setAttribute("tel", tel);
                     session.setAttribute("id", user.getId());
                     session.setAttribute("basketId", basket.getId());
+                    session.setAttribute("livres", basket.getLivres());
                     destination = "/AccountPortalServlet";
                 } catch (Exception e) {
                     destination = "/AccountErrorCreationServlet";
@@ -147,8 +137,6 @@ public class AccountServlet extends HttpServlet {
 
         if("findUsersByEmail".equals(action)) {
             String email = request.getParameter("email_user");
-
-
             List<User> users = userService.findUsersByEmail(email);
 
             try {
@@ -164,9 +152,24 @@ public class AccountServlet extends HttpServlet {
                     session.setAttribute("id", user.getId());
 
                     List<Basket> baskets = basketService.findBasketsByUserId(user.getId());
-                    if (baskets != null) {
-                        session.setAttribute("baskets", baskets);
+                    Basket basket = basketService.findBasketById(baskets.get(0).getId());
+                    if (basket != null) {
+                        System.out.println("basket found in AccountServlet");
+                        System.out.println("baskets: " + baskets);
+                        System.out.println("id from baskets: " + baskets.get(0).getId());
+                        System.out.println("basket: " + basket);
+                        System.out.println("basket id: " + basket.getId());
+                        System.out.println("basket livres: " + basket.getLivres());
+
+                        session.setAttribute("livres", basket.getLivres());
+                        session.setAttribute("basketId", basket.getId());
+                    } else {
+                        Basket basketNew = new Basket(user, null);
+                        basketService.createBasket(basketNew);
+                        session.setAttribute("basket", basketNew);
+                        session.setAttribute("basketId", basketNew.getId());
                     }
+
                     destination = "/AccountPortalServlet";
                 }
             } catch (Exception e) {
@@ -175,7 +178,7 @@ public class AccountServlet extends HttpServlet {
             }
         }
 
-        setLocaleAttributes(request);
+        LocaleUtil.setLocaleAttributes(request);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
         dispatcher.forward(request, response);
