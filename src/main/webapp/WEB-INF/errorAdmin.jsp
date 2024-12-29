@@ -31,7 +31,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="adminError.title"/></title>
-    <link rel="stylesheet" href="styles/styleAdminErrorPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
 
@@ -48,7 +48,7 @@
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                        <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                        <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
@@ -61,7 +61,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -71,7 +71,7 @@
     <main>
         <h1><fmt:message key="main.errorTitle"/></h1>
         <section class="catalog-block white-bg">
-            <div class="text-block">
+            <div class="text-block text-block-correct">
                 <h3><fmt:message key="main.errorMessage"/></h3>
                 <a class="btn" href="AdminServlet?locale=<%= locale %>"><fmt:message key="adminErrorButton"/></a>
             </div>
@@ -84,6 +84,6 @@
     </footer>
 
 </fmt:bundle>
-<script src="scripts/scriptAdminErrorPage.js"></script>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
