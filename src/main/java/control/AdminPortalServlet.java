@@ -22,7 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author Evgenii Morgunov
  */
 public class AdminPortalServlet extends HttpServlet {
-    private LivreService livreService = new LivreService();
+    private LivreService livreService;
+
+    @Override
+    public void init() throws ServletException {
+        livreService = (LivreService) getServletContext().getAttribute("livreService");
+    }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -51,23 +57,6 @@ public class AdminPortalServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void setLocaleAttributes(HttpServletRequest request) {
-        String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
-        } else {
-            locale = "en_US";
-        }
-        request.setAttribute("locale", locale);
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -81,7 +70,7 @@ public class AdminPortalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        setLocaleAttributes(request);
+        LocaleUtil.setLocaleAttributes(request);
 
         if (request.getAttribute("livres") == null) {
             List<Livre> livres = livreService.findAllLivres();
@@ -104,6 +93,7 @@ public class AdminPortalServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+
         if ("filter".equals(action)) {
             String filterType = request.getParameter("filterType");
             String filterValue = request.getParameter("filterValue");
@@ -155,7 +145,7 @@ public class AdminPortalServlet extends HttpServlet {
             livreService.createLivre(livre);
         }
 
-        setLocaleAttributes(request);
+        LocaleUtil.setLocaleAttributes(request);
         doGet(request, response);
     }
 
