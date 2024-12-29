@@ -59,20 +59,7 @@ public class AccountErrorCreationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
-        } else {
-            locale = "en_US";
-        }
-        request.setAttribute("locale", locale);
+        LocaleUtil.setLocaleAttributes(request);
 
         request.getRequestDispatcher("WEB-INF/accountErrorCreation.jsp")
                 .forward(request, response);
