@@ -92,8 +92,8 @@ public class BasketServlet extends HttpServlet {
                 basketService.createBasket(newBasket);
                 basketId = newBasket.getId();
                 session.setAttribute("basketId", basketId);
-                baskets = basketService.findBasketsByUserId(userId);
-                session.setAttribute("baskets", baskets);
+                Basket basket = basketService.findBasketById(basketId);
+                session.setAttribute("livres", basket.getLivres());
                 updateBasketAndSetDestination(session, basketId, livre);
             } else {
                 basketId = baskets.get(0).getId();
@@ -135,12 +135,7 @@ public class BasketServlet extends HttpServlet {
             if (updatedLivres.stream().noneMatch(l -> l.getId().equals(livre.getId()))) {
                 destination = "/BasketErrorServlet";
             } else {
-                System.out.println("basket found in BasketServlet");
-                System.out.println("basketId from session: " + basketId);
-                System.out.println("basket: " + basketAfterUpdate);
-                System.out.println("basket id: " + basketAfterUpdate.getId());
-                System.out.println("basket livres: " + basketAfterUpdate.getLivres());
-                session.setAttribute("livres", updatedLivres);
+
                 destination = "/BasketSuccessServlet";
             }
         }
