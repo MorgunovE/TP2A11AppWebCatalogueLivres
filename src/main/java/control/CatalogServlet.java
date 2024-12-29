@@ -37,11 +37,12 @@ import javax.servlet.http.HttpSession;
  * Elle utilise un fichier de propriétés pour les messages d'avertissement.
  */
 public class CatalogServlet extends HttpServlet {
+    private LivreService livreService;
 
-    /**
-     * Le service pour accéder aux données des livres.
-     */
-    private LivreService livreService = new LivreService();
+    @Override
+    public void init() throws ServletException {
+        livreService = (LivreService) getServletContext().getAttribute("livreService");
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,20 +77,7 @@ public class CatalogServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         request.setAttribute("userName", userName);
-        String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
-        } else {
-            locale = "en_US";
-        }
-        request.setAttribute("locale", locale);
+        LocaleUtil.setLocaleAttributes(request);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
