@@ -4,10 +4,13 @@
  */
 package control;
 
+import model.Basket;
+import service.BasketService;
 import service.UserService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,20 +73,7 @@ public class AccountPortalServlet extends HttpServlet {
         String tel = (String) session.getAttribute("tel");
         Long userId = (Long) session.getAttribute("id");
         Long basketId = (Long) session.getAttribute("basketId");
-        String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
-        } else {
-            locale = "en_US";
-        }
-        request.setAttribute("locale", locale);
+        LocaleUtil.setLocaleAttributes(request);
         request.setAttribute("name", name);
         request.setAttribute("familyName", familyName);
         request.setAttribute("email", email);
