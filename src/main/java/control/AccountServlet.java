@@ -154,13 +154,6 @@ public class AccountServlet extends HttpServlet {
                     List<Basket> baskets = basketService.findBasketsByUserId(user.getId());
                     Basket basket = basketService.findBasketById(baskets.get(0).getId());
                     if (basket != null) {
-                        System.out.println("basket found in AccountServlet");
-                        System.out.println("baskets: " + baskets);
-                        System.out.println("id from baskets: " + baskets.get(0).getId());
-                        System.out.println("basket: " + basket);
-                        System.out.println("basket id: " + basket.getId());
-                        System.out.println("basket livres: " + basket.getLivres());
-
                         session.setAttribute("livres", basket.getLivres());
                         session.setAttribute("basketId", basket.getId());
                     } else {
