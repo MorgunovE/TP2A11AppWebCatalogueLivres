@@ -5,7 +5,6 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page session="true" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String locale = request.getParameter("locale");
@@ -32,7 +31,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="adminPortal.title"/></title>
-    <link rel="stylesheet" href="styles/styleAdminPortalPage.css">
+    <link rel="stylesheet" href="styles/styleJspPage.css">
 </head>
 <body>
 
@@ -48,7 +47,7 @@
                     <ul>
                         <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                         <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                        <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                        <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
@@ -61,7 +60,7 @@
                 <ul>
                     <li><a href="CatalogServlet?locale=<%= locale %>"><fmt:message key="header.catalog"/></a></li>
                     <li><a href="AccountServlet?locale=<%= locale %>"><fmt:message key="header.account"/></a></li>
-                    <li><a href=""><fmt:message key="header.checkout"/></a></li>
+                    <li><a href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="header.checkout"/></a></li>
                     <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                 </ul>
             </nav>
@@ -127,7 +126,7 @@
                 </div>
             </div>
         </section>
-        <section class="catalog-block white-bg">
+        <section class="catalog-block grey-bg">
             <div class="catalog-items">
                 <c:forEach var="livre" items="${livres}">
                     <div class="card">
@@ -153,6 +152,6 @@
     </footer>
 
 </fmt:bundle>
-<script src="scripts/scriptAdminPortalPage.js"></script>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
 </html>
