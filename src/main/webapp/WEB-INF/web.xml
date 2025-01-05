@@ -64,6 +64,18 @@
         <servlet-name>PrintCheckoutPdfServlet</servlet-name>
         <servlet-class>control.PrintCheckoutPdfServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateBasketServlet</servlet-name>
+        <servlet-class>control.UpdateBasketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <servlet-class>control.UpdateAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <servlet-class>control.DeleteAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -127,6 +139,18 @@
     <servlet-mapping>
         <servlet-name>PrintCheckoutPdfServlet</servlet-name>
         <url-pattern>/PrintCheckoutPdfServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBasketServlet</servlet-name>
+        <url-pattern>/UpdateBasketServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <url-pattern>/UpdateAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <url-pattern>/DeleteAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
