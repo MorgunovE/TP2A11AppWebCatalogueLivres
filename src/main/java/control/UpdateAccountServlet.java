@@ -6,6 +6,7 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,20 +58,22 @@ public class UpdateAccountServlet extends HttpServlet {
         throws ServletException, IOException {
         // 
         HttpSession session = request.getSession();
+        
         Long userId = (Long) session.getAttribute("id");
-        if(userId == null) {
-            //send to loginrequired servlet
+        if (userId == null) {
+            //send to login required servlet
+            response.sendRedirect("AccountServlet");
         } else {
-            //
-
+            // Find the user
             User user = userService.findUserById(userId);
- //check if user==null send to error page
-            // else
-            session.setAttribute("userSession", user); //?
-            request.getRequestDispatcher("Web/editAccount.jsp").forward(request, response);//?web inf
+            if (user == null) {
+            // User not found            
+            request.getRequestDispatcher("WEB-INF/updateAccountError.jsp").forward(request, response);
+            } else {
+                    request.setAttribute("user", user);
+                    request.getRequestDispatcher("WEB-INF/updateAccount.jsp").forward(request, response);
+                }
         }
-
-
     }
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -83,14 +86,15 @@ public class UpdateAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        long id = Long.parseLong(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("id");
         String name = request.getParameter("name");
         String familyName = request.getParameter("familyName");
         String tel = request.getParameter("tel");
         String email = request.getParameter("email");
 
-        UserService userService = new UserService();
-        User user = userService.findUserById(id);
+       
+        User user = userService.findUserById(userId);
 
         user.setName(name);
         user.setFamilyName(familyName);
@@ -102,7 +106,12 @@ public class UpdateAccountServlet extends HttpServlet {
         userService.updateUser(user);
 
         //
-        response.sendRedirect("account.jsp");
+        session.setAttribute("user", user);
+
+        String destination = request.getContextPath() + "/account.jsp";
+        LocaleUtil.setLocaleAttributes(request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
+        dispatcher.forward(request, response);
     }
 
     /**

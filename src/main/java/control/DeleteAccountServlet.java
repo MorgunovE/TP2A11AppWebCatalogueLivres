@@ -60,6 +60,10 @@ public class DeleteAccountServlet extends HttpServlet {
             throws ServletException, IOException {
             // Get user id
         HttpSession session = request.getSession();
+        String locale = request.getParameter("locale");
+        if (locale != null) {
+            session.setAttribute("locale", locale);
+        }
         Long userId = (Long) session.getAttribute("id");
 
         if (userId == null) {
@@ -79,9 +83,6 @@ public class DeleteAccountServlet extends HttpServlet {
        
         }
 
-        // Pass id to confirmation page
-        //request.setAttribute("userId", userId);
-       // request.getRequestDispatcher("deleteAccount.jsp").forward(request, response);
     }
 
     /**

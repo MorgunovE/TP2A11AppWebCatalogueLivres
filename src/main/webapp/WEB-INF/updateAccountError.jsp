@@ -1,6 +1,6 @@
 <%-- 
-    Document   : deleteAccount
-    Created on : Jan 2, 2025, 2:35:41 PM
+    Document   : updateAccountError
+    Created on : Jan 5, 2025, 9:37:59 AM
     Author     : user
 --%>
 
@@ -27,15 +27,12 @@
   <fmt:bundle basename="ressources_i18n.Messages_${param.locale != null ? param.locale : 'en_US'}">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><fmt:message key="accountConfirmDeleteAccount.title"/></title>
+        <title><fmt:message key="accountErrorUpdateAccount.title"/></title>
+        <link rel="stylesheet" href="styles/styleJspPage.css">
     </head>
     <body>
-        <form method="POST" action="DeleteAccountServlet">
-            <input type="hidden" name="id" value="${userId}">
-            <p>Are you sure?</p>
-            <button type="submit">Delete</button> 
-            <a href="jsp/account.jsp">Cancel</a>//not correct page loading???
-        </form>
+        <h3>Something is wrong</h3>
+        <a href="index.html">Go to main page</a>
     </body>
-   </fmt:bundle>
+  </fmt:bundle>
 </html>
