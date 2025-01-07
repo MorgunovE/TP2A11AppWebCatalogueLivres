@@ -89,8 +89,8 @@ public class UpdateBasketServlet extends HttpServlet {
             Livre livre = livreService.findLivreById(bookId);
             List<Livre> livres = basket.getLivres();
 
-            if (livre != null && livres.contains(livre)) {
-                livres.remove(livre);
+            if (livre != null && livres.stream().anyMatch(l -> l.getId().equals(livre.getId()))) {
+                livres.stream().filter(l -> l.getId().equals(livre.getId())).findFirst().ifPresent(livres::remove);
                 basket.setLivres(livres);
                 basketService.updateBasket(basket);
 
