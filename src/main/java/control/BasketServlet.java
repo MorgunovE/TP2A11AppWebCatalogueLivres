@@ -94,21 +94,17 @@ public class BasketServlet extends HttpServlet {
                 session.setAttribute("basketId", basketId);
                 Basket basket = basketService.findBasketById(basketId);
                 session.setAttribute("livres", basket.getLivres());
-                updateBasketAndSetDestination(session, basketId, livre);
+                destination = updateBasketAndSetDestination(session, basketId, livre);
             } else {
                 basketId = baskets.get(0).getId();
                 session.setAttribute("basketId", basketId);
                 session.setAttribute("baskets", baskets);
-                updateBasketAndSetDestination(session, basketId, livre);
+                destination = updateBasketAndSetDestination(session, basketId, livre);
             }
         } else if (livre.getQuantity() == 0) {
             destination = "/BookOutOfStockServlet";
         } else{
-            updateBasketAndSetDestination(session, basketId, livre);
-        }
-
-        if (destination == null) {
-            destination = (String) session.getAttribute("destination");
+            destination = updateBasketAndSetDestination(session, basketId, livre);
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
@@ -116,7 +112,7 @@ public class BasketServlet extends HttpServlet {
 
     }
 
-    private void updateBasketAndSetDestination(HttpSession session, Long basketId, Livre livre) {
+    private String updateBasketAndSetDestination(HttpSession session, Long basketId, Livre livre) {
         Basket basket = basketService.findBasketById(basketId);
         List<Livre> livres = basket.getLivres();
         String destination = null;
@@ -135,11 +131,10 @@ public class BasketServlet extends HttpServlet {
             if (updatedLivres.stream().noneMatch(l -> l.getId().equals(livre.getId()))) {
                 destination = "/BasketErrorServlet";
             } else {
-
                 destination = "/BasketSuccessServlet";
             }
         }
-        session.setAttribute("destination", destination);
+        return destination;
     }
 
     /**
