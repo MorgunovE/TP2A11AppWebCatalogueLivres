@@ -124,7 +124,7 @@
                                             <strong><fmt:message key="accountPortal.bookPrice"/>:</strong>
                                                 ${livre.price}
                                         </p>
-                                        <a class="btn" href="UpdateBasketServlet?basketId=${basket.id}&bookId=${livre.id}&locale=<%= locale %>">
+                                        <a class="btn" href="UpdateBasketServlet?basketId=${sessionScope.basketId}&bookId=${livre.id}&locale=<%= locale %>">
                                             <fmt:message key="accountPortal.buttonUpdateBasket"/>
                                         </a>
                                     </div>
