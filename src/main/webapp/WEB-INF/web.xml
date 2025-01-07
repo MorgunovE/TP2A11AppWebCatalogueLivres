@@ -72,6 +72,10 @@
         <servlet-name>UpdateBasketSuccessServlet</servlet-name>
         <servlet-class>control.UpdateBasketSuccessServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateBasketErrorServlet</servlet-name>
+        <servlet-class>control.UpdateBasketErrorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>UpdateBasketSuccessServlet</servlet-name>
         <url-pattern>/UpdateBasketSuccessServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBasketErrorServlet</servlet-name>
+        <url-pattern>/UpdateBasketErrorServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
