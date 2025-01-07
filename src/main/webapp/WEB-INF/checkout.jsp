@@ -88,7 +88,7 @@
                                     <p><strong><fmt:message key="checkout.bookAuthor"/>:</strong> ${livre.author}</p>
                                     <p><strong><fmt:message key="checkout.bookGenre"/>:</strong> ${livre.genre}</p>
                                     <p><strong><fmt:message key="checkout.bookPrice"/>:</strong> ${livre.price}</p>
-                                    <a class="btn" href="UpdateBasketServlet?basketId=${basket.id}&bookId=${livre.id}&locale=<%= locale %>">
+                                    <a class="btn" href="UpdateBasketServlet?basketId=${sessionScope.basketId}&bookId=${livre.id}&locale=<%= locale %>">
                                         <fmt:message key="checkout.buttonUpdateBasket"/>
                                     </a>
                                 </div>
