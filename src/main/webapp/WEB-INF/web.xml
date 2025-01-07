@@ -76,6 +76,10 @@
         <servlet-name>UpdateBasketErrorServlet</servlet-name>
         <servlet-class>control.UpdateBasketErrorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteBookServlet</servlet-name>
+        <servlet-class>control.DeleteBookServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>UpdateBasketErrorServlet</servlet-name>
         <url-pattern>/UpdateBasketErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookServlet</servlet-name>
+        <url-pattern>/DeleteBookServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
