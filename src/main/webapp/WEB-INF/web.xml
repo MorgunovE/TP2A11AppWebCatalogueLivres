@@ -64,6 +64,10 @@
         <servlet-name>PrintCheckoutPdfServlet</servlet-name>
         <servlet-class>control.PrintCheckoutPdfServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateBasketServlet</servlet-name>
+        <servlet-class>control.UpdateBasketServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>PrintCheckoutPdfServlet</servlet-name>
         <url-pattern>/PrintCheckoutPdfServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBasketServlet</servlet-name>
+        <url-pattern>/UpdateBasketServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
