@@ -4,14 +4,11 @@
  */
 package control;
 
-import model.Basket;
 import model.Livre;
-import service.BasketService;
 import service.LivreService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,13 +21,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Evgenii Morgunov
  */
-public class DeleteBookServlet extends HttpServlet {
+public class UpdateBookServlet extends HttpServlet {
     private LivreService livreService;
-    private BasketService basketService;
 
     @Override
     public void init() throws ServletException {
-        basketService = (BasketService) getServletContext().getAttribute("basketService");
         livreService = (LivreService) getServletContext().getAttribute("livreService");
     }
 
@@ -46,7 +41,6 @@ public class DeleteBookServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,8 +57,8 @@ public class DeleteBookServlet extends HttpServlet {
             throws ServletException, IOException {
         LocaleUtil.setLocaleAttributes(request);
 
-        String destination;
         String bookIdParam = request.getParameter("id");
+        String destination;
 
         if (bookIdParam == null || bookIdParam.isEmpty()) {
             destination = "/ErrorBookServlet";
@@ -72,30 +66,11 @@ public class DeleteBookServlet extends HttpServlet {
             Long bookId = Long.parseLong(bookIdParam);
             Livre livre = livreService.findLivreById(bookId);
 
-            if (livre == null ) {
+            if (livre == null) {
                 destination = "/ErrorBookServlet";
             } else {
-
-                List<Basket> baskets = basketService.findAllBaskets();
-                for (Basket basket : baskets) {
-                    List<Livre> livres = basket.getLivres();
-                    livres.stream().filter(l -> l.getId().equals(bookId)).findFirst().ifPresent(livres::remove);
-                    basket.setLivres(livres);
-                    basketService.updateBasket(basket);
-                }
-
-                livreService.deleteLivre(livre);
-                Livre deletedLivre = livreService.findLivreById(bookId);
-
-                if (deletedLivre != null) {
-                    destination = "/DeleteBookErrorServlet";
-                } else {
-                    HttpSession session = request.getSession(false);
-                    if (session != null) {
-                        session.invalidate();
-                    }
-                    destination = "/DeleteBookSuccessServlet";
-                }
+                request.setAttribute("livre", livre);
+                destination = "WEB-INF/updateBook.jsp";
             }
         }
 
@@ -114,8 +89,55 @@ public class DeleteBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        LocaleUtil.setLocaleAttributes(request);
+        String bookIdParam = request.getParameter("id");
+        String destination;
+
+        if (bookIdParam == null || bookIdParam.isEmpty()) {
+            destination = "/ErrorBookServlet";
+        } else {
+            Long bookId = Long.parseLong(bookIdParam);
+            Livre livre = livreService.findLivreById(bookId);
+
+            if (livre == null) {
+                destination = "/ErrorBookServlet";
+            } else {
+                String title = request.getParameter("title");
+                String author = request.getParameter("author");
+                String genre = request.getParameter("genre");
+                String description = request.getParameter("description");
+                double price = Double.parseDouble(request.getParameter("price"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                String image = request.getParameter("image");
+
+                livre.setTitle(title);
+                livre.setAuthor(author);
+                livre.setGenre(genre);
+                livre.setDescription(description);
+                livre.setPrice(price);
+                livre.setQuantity(quantity);
+                livre.setImage(image);
+
+                livreService.updateLivre(livre);
+
+                Livre updatedLivre = livreService.findLivreById(bookId);
+
+                if (updatedLivre == null) {
+                    destination = "/UpdateBookErrorServlet";
+                } else {
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
+                    destination = "/UpdateBookSuccessServlet";
+                }
+            }
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
+        dispatcher.forward(request, response);
     }
+
 
     /**
      * Returns a short description of the servlet.

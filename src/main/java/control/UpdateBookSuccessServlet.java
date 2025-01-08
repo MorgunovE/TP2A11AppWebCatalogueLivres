@@ -6,7 +6,6 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Evgenii Morgunov
  */
-public class DeleteBookSuccessServlet extends HttpServlet {
+public class UpdateBookSuccessServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +31,9 @@ public class DeleteBookSuccessServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         LocaleUtil.setLocaleAttributes(request);
 
-        request
-                .getRequestDispatcher("WEB-INF/deleteBookSuccess.jsp")
+        request.getRequestDispatcher("WEB-INF/updateBookSuccess.jsp")
                 .forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

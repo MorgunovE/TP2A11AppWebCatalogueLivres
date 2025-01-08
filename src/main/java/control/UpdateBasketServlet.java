@@ -46,16 +46,6 @@ public class UpdateBasketServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-        request.setAttribute("locale", locale);
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
 
     }
 

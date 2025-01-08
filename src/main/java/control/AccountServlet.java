@@ -47,20 +47,6 @@ public class AccountServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
-
-        RequestDispatcher rd = request
-                .getRequestDispatcher("/jsp/account.jsp");
-        rd.forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

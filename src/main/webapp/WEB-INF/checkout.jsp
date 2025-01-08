@@ -28,8 +28,8 @@
     Long basketId = (Long) session.getAttribute("basketId");
 %>
 <!DOCTYPE html>
-<fmt:setLocale value="${param.locale != null ? param.locale : 'en_US'}"/>
-<fmt:bundle basename="ressources_i18n.Messages_${param.locale != null ? param.locale : 'en_US'}">
+<fmt:setLocale value="${locale}"/>
+<fmt:bundle basename="ressources_i18n.Messages_${locale}">
 <html lang="en">
 <head>
     <meta charset="UTF-8">

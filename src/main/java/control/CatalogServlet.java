@@ -57,20 +57,6 @@ public class CatalogServlet extends HttpServlet {
                                   HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
-
-        RequestDispatcher rd = request
-                .getRequestDispatcher("/jsp/catalog.jsp");
-        rd.forward(request, response);
     }
 
     private void setUserAndLocaleAttributes(HttpServletRequest request) {
