@@ -88,6 +88,10 @@
         <servlet-name>DeleteBookErrorServlet</servlet-name>
         <servlet-class>control.DeleteBookErrorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteBookSuccessServlet</servlet-name>
+        <servlet-class>control.DeleteBookSuccessServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>DeleteBookErrorServlet</servlet-name>
         <url-pattern>/DeleteBookErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookSuccessServlet</servlet-name>
+        <url-pattern>/DeleteBookSuccessServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
