@@ -68,7 +68,7 @@
         <section class="account-block white-bg">
             <div class="text-block text-block-correct">
                 <h3><fmt:message key="errorBook.message"/></h3>
-                <a class="btn" href="AccountPortalServlet?locale=<%= locale %>"><fmt:message key="errorBook.returnButton"/></a>
+                <a class="btn" href="AdminPortalServlet?locale=<%= locale %>"><fmt:message key="errorBook.returnButton"/></a>
             </div>
         </section>
     </main>

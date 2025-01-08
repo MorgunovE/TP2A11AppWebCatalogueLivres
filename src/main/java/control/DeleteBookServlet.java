@@ -4,11 +4,14 @@
  */
 package control;
 
+import model.Basket;
 import model.Livre;
+import service.BasketService;
 import service.LivreService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,9 +26,11 @@ import javax.servlet.http.HttpSession;
  */
 public class DeleteBookServlet extends HttpServlet {
     private LivreService livreService;
+    private BasketService basketService;
 
     @Override
     public void init() throws ServletException {
+        basketService = (BasketService) getServletContext().getAttribute("basketService");
         livreService = (LivreService) getServletContext().getAttribute("livreService");
     }
 
@@ -81,6 +86,15 @@ public class DeleteBookServlet extends HttpServlet {
             if (livre == null ) {
                 destination = "/ErrorBookServlet";
             } else {
+
+                List<Basket> baskets = basketService.findAllBaskets();
+                for (Basket basket : baskets) {
+                    List<Livre> livres = basket.getLivres();
+                    livres.stream().filter(l -> l.getId().equals(bookId)).findFirst().ifPresent(livres::remove);
+                    basket.setLivres(livres);
+                    basketService.updateBasket(basket);
+                }
+
                 livreService.deleteLivre(livre);
                 Livre deletedLivre = livreService.findLivreById(bookId);
 
