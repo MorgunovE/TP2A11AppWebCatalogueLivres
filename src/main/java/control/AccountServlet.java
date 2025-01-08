@@ -62,7 +62,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        LocaleUtil.setLocaleAttributes(request);
+       request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         request.getRequestDispatcher("/jsp/account.jsp")
                 .forward(request, response);
@@ -157,7 +157,7 @@ public class AccountServlet extends HttpServlet {
             }
         }
 
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
         dispatcher.forward(request, response);

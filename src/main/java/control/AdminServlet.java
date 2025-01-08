@@ -49,7 +49,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         request.getRequestDispatcher("/jsp/admin.jsp")
                 .forward(request, response);
@@ -77,7 +77,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         dispatcher.forward(request, response);
     }
 

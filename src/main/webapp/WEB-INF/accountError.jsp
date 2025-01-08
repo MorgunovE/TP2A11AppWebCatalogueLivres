@@ -1,25 +1,14 @@
-<%-- 
+<%--
     Document   : accountError
     Created on : Dec 27, 2024, 2:22:07 PM
     Author     : Evgenii Morgunov
 --%>
 
+<%@ page import="control.LocaleUtil" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String locale = request.getParameter("locale");
-    String language = request.getParameter("Language");
-    if ("fr_FR".equals(locale)) {
-        locale = "fr_FR";
-    } else if ("en_US".equals(locale)) {
-        locale = "en_US";
-    } else if ("fr".equals(language)) {
-        locale = "fr_FR";
-    } else if (locale == null || locale.isEmpty()) {
-        locale = "en_US";
-    } else {
-        locale = "en_US";
-    }
+    String locale = LocaleUtil.setLocaleAttributes(request);
 %>
 <!DOCTYPE html>
 <fmt:setLocale value="${locale}"/>

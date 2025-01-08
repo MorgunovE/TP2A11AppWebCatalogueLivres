@@ -29,7 +29,7 @@ public class UpdateBookSuccessServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         request.getRequestDispatcher("WEB-INF/updateBookSuccess.jsp")
                 .forward(request, response);

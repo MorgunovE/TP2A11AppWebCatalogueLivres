@@ -63,7 +63,7 @@ public class CatalogServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
         request.setAttribute("userName", userName);
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -55,7 +55,7 @@ public class UpdateBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         String bookIdParam = request.getParameter("id");
         String destination;
@@ -89,7 +89,7 @@ public class UpdateBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         String bookIdParam = request.getParameter("id");
         String destination;
 

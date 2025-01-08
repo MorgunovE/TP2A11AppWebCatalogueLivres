@@ -61,7 +61,7 @@ public class UpdateBasketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("id");
         Long basketId = Long.parseLong(request.getParameter("basketId"));

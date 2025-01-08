@@ -56,7 +56,7 @@ public class AdminPortalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         if (request.getAttribute("livres") == null) {
             List<Livre> livres = livreService.findAllLivres();
@@ -131,7 +131,7 @@ public class AdminPortalServlet extends HttpServlet {
             livreService.createLivre(livre);
         }
 
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         doGet(request, response);
     }
 
