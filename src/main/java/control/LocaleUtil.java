@@ -9,22 +9,27 @@ package control;
  * @author Evgenii Morgunov
  */
 import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 
 public class LocaleUtil {
-    public static void setLocaleAttributes(HttpServletRequest request) {
+    public static String setLocaleAttributes(HttpServletRequest request) {
+        Locale loc = request.getLocale();
         String locale = request.getParameter("locale");
-        String language = request.getParameter("Language");
-        if ("fr_FR".equals(locale)) {
-            locale = "fr_FR";
-        } else if ("en_US".equals(locale)) {
-            locale = "en_US";
-        } else if ("fr".equals(language)) {
-            locale = "fr_FR";
-        } else if (locale == null || locale.isEmpty()) {
-            locale = "en_US";
+
+        if(locale == null || locale.isEmpty()) {
+            if ("fr_FR".equals(loc.toString()) ) {
+                locale = "fr_FR";
+            } else if ("en_US".equals(loc.toString()) ) {
+                locale = "en_US";
+            }  else {
+                locale = "en_US";
+            }
+        } else if ("fr_FR".equals(locale)) {
+                locale = "fr_FR";
         } else {
-            locale = "en_US";
+                locale = "en_US";
         }
-        request.setAttribute("locale", locale);
+
+        return locale;
     }
 }

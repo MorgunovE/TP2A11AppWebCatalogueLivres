@@ -1,35 +1,24 @@
-<%-- 
+<%--
     Document   : accountPortal
     Created on : Dec 27, 2024, 2:26:55 PM
     Author     : Evgenii Morgunov
 --%>
 
+<%@ page import="control.LocaleUtil" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="true" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String locale = request.getParameter("locale");
-    String language = request.getParameter("Language");
-    if ("fr_FR".equals(locale)) {
-        locale = "fr_FR";
-    } else if ("en_US".equals(locale)) {
-        locale = "en_US";
-    } else if ("fr".equals(language)) {
-        locale = "fr_FR";
-    } else if (locale == null || locale.isEmpty()) {
-        locale = "en_US";
-    } else {
-        locale = "en_US";
-    }
+    String locale = LocaleUtil.setLocaleAttributes(request);
     String name = (String) session.getAttribute("name");
     String familyName = (String) session.getAttribute("familyName");
     String email = (String) session.getAttribute("email");
     String telephone = (String) session.getAttribute("tel");
 %>
 <!DOCTYPE html>
-<fmt:setLocale value="${param.locale != null ? param.locale : 'en_US'}"/>
-<fmt:bundle basename="ressources_i18n.Messages_${param.locale != null ? param.locale : 'en_US'}">
+<fmt:setLocale value="${locale}"/>
+<fmt:bundle basename="ressources_i18n.Messages_${locale}">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -124,7 +113,7 @@
                                             <strong><fmt:message key="accountPortal.bookPrice"/>:</strong>
                                                 ${livre.price}
                                         </p>
-                                        <a class="btn" href="UpdateBasketServlet?basketId=${basket.id}&bookId=${livre.id}&locale=<%= locale %>">
+                                        <a class="btn" href="UpdateBasketServlet?basketId=${sessionScope.basketId}&bookId=${livre.id}&locale=<%= locale %>">
                                             <fmt:message key="accountPortal.buttonUpdateBasket"/>
                                         </a>
                                     </div>

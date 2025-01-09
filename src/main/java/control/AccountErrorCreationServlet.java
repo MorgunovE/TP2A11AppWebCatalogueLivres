@@ -31,19 +31,10 @@ public class AccountErrorCreationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
-        RequestDispatcher rd = request
-                .getRequestDispatcher("WEB-INF/accountErrorCreation.jsp");
-        rd.forward(request, response);
+        request.getRequestDispatcher("WEB-INF/accountErrorCreation.jsp")
+                .forward(request, response);
 
     }
 
@@ -59,10 +50,7 @@ public class AccountErrorCreationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LocaleUtil.setLocaleAttributes(request);
-
-        request.getRequestDispatcher("WEB-INF/accountErrorCreation.jsp")
-                .forward(request, response);
+        processRequest(request, response);
     }
 
     /**

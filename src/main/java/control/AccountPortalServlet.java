@@ -37,17 +37,7 @@ public class AccountPortalServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
-
+        LocaleUtil.setLocaleAttributes(request);
         RequestDispatcher rd = request
                 .getRequestDispatcher("WEB-INF/accountPortal.jsp");
         rd.forward(request, response);
@@ -65,7 +55,7 @@ public class AccountPortalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         HttpSession session = request.getSession();
         String name = (String) session.getAttribute("name");
         String familyName = (String) session.getAttribute("familyName");
@@ -73,7 +63,7 @@ public class AccountPortalServlet extends HttpServlet {
         String tel = (String) session.getAttribute("tel");
         Long userId = (Long) session.getAttribute("id");
         Long basketId = (Long) session.getAttribute("basketId");
-        LocaleUtil.setLocaleAttributes(request);
+
         request.setAttribute("name", name);
         request.setAttribute("familyName", familyName);
         request.setAttribute("email", email);
@@ -81,8 +71,9 @@ public class AccountPortalServlet extends HttpServlet {
         request.setAttribute("id", userId);
         request.setAttribute("basketId", basketId);
 
-        request.getRequestDispatcher("WEB-INF/accountPortal.jsp")
-                .forward(request, response);
+        RequestDispatcher rd = request
+                .getRequestDispatcher("WEB-INF/accountPortal.jsp");
+        rd.forward(request, response);
     }
 
     /**

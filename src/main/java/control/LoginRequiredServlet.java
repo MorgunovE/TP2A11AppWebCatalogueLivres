@@ -30,17 +30,10 @@ public class LoginRequiredServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-        request.setAttribute("locale", locale);
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
+        request.getRequestDispatcher("WEB-INF/loginRequired.jsp"
+        ).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,10 +48,7 @@ public class LoginRequiredServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LocaleUtil.setLocaleAttributes(request);
-
-        request.getRequestDispatcher("WEB-INF/loginRequired.jsp"
-        ).forward(request, response);
+        processRequest(request, response);
     }
 
     /**

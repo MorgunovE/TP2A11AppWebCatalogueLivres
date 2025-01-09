@@ -36,6 +36,7 @@ public class PrintCheckoutPdfServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=checkout.pdf");
         OutputStream out = response.getOutputStream();
@@ -50,7 +51,7 @@ public class PrintCheckoutPdfServlet extends HttpServlet {
             LocaleUtil.setLocaleAttributes(request);
 
             if (livres == null || livres.isEmpty()) {
-                if (request.getAttribute("locale").equals("fr_FR") || request.getAttribute("locale").equals("fr")) {
+                if (request.getAttribute("locale").equals("fr_FR")) {
                     document.add(new Paragraph("Votre panier est vide"));
                 } else {
                     document.add(new Paragraph("Your basket is empty"));
@@ -58,7 +59,7 @@ public class PrintCheckoutPdfServlet extends HttpServlet {
 
             } else {
 
-                if (request.getAttribute("locale").equals("fr_FR") || request.getAttribute("locale").equals("fr")) {
+                if (request.getAttribute("locale").equals("fr_FR")) {
                     Paragraph titre = new Paragraph("Facture", FontFactory.getFont(FontFactory.TIMES, 18, Font.BOLDITALIC, BaseColor.BLUE));
                     titre.setAlignment(Element.ALIGN_CENTER);
                     titre.setSpacingAfter(30f);

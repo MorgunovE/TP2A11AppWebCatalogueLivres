@@ -69,6 +69,42 @@
         <servlet-class>control.UpdateBasketServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateBasketSuccessServlet</servlet-name>
+        <servlet-class>control.UpdateBasketSuccessServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateBasketErrorServlet</servlet-name>
+        <servlet-class>control.UpdateBasketErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookServlet</servlet-name>
+        <servlet-class>control.DeleteBookServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ErrorBookServlet</servlet-name>
+        <servlet-class>control.ErrorBookServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookErrorServlet</servlet-name>
+        <servlet-class>control.DeleteBookErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookSuccessServlet</servlet-name>
+        <servlet-class>control.DeleteBookSuccessServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateBookServlet</servlet-name>
+        <servlet-class>control.UpdateBookServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateBookErrorServlet</servlet-name>
+        <servlet-class>control.UpdateBookErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateBookSuccessServlet</servlet-name>
+        <servlet-class>control.UpdateBookSuccessServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UpdateAccountServlet</servlet-name>
         <servlet-class>control.UpdateAccountServlet</servlet-class>
     </servlet>
@@ -143,6 +179,42 @@
     <servlet-mapping>
         <servlet-name>UpdateBasketServlet</servlet-name>
         <url-pattern>/UpdateBasketServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBasketSuccessServlet</servlet-name>
+        <url-pattern>/UpdateBasketSuccessServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBasketErrorServlet</servlet-name>
+        <url-pattern>/UpdateBasketErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookServlet</servlet-name>
+        <url-pattern>/DeleteBookServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorBookServlet</servlet-name>
+        <url-pattern>/ErrorBookServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookErrorServlet</servlet-name>
+        <url-pattern>/DeleteBookErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookSuccessServlet</servlet-name>
+        <url-pattern>/DeleteBookSuccessServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBookServlet</servlet-name>
+        <url-pattern>/UpdateBookServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBookErrorServlet</servlet-name>
+        <url-pattern>/UpdateBookErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBookSuccessServlet</servlet-name>
+        <url-pattern>/UpdateBookSuccessServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateAccountServlet</servlet-name>

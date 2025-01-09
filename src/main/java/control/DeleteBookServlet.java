@@ -24,9 +24,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Evgenii Morgunov
  */
-public class UpdateBasketServlet extends HttpServlet {
-    private BasketService basketService;
+public class DeleteBookServlet extends HttpServlet {
     private LivreService livreService;
+    private BasketService basketService;
 
     @Override
     public void init() throws ServletException {
@@ -62,39 +62,40 @@ public class UpdateBasketServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
-        HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("id");
-        Long basketId = Long.parseLong(request.getParameter("basketId"));
-        Long bookId = Long.parseLong(request.getParameter("bookId"));
+
         String destination;
+        String bookIdParam = request.getParameter("id");
 
-        if (userId == null) {
-            destination = "/LoginRequiredServlet";
-        } else if( basketId == 0) {
-            destination = "/BasketErrorServlet";
-        } else if (bookId == 0) {
-            destination = "/BasketErrorServlet";
+        if (bookIdParam == null || bookIdParam.isEmpty()) {
+            destination = "/ErrorBookServlet";
         } else {
-            Basket basket = basketService.findBasketById(basketId);
+            Long bookId = Long.parseLong(bookIdParam);
             Livre livre = livreService.findLivreById(bookId);
-            List<Livre> livres = basket.getLivres();
 
-            if (livre != null && livres.stream().anyMatch(l -> l.getId().equals(livre.getId()))) {
-                livres.stream().filter(l -> l.getId().equals(livre.getId())).findFirst().ifPresent(livres::remove);
-                basket.setLivres(livres);
-                basketService.updateBasket(basket);
-
-                Basket basketAfterUpdate = basketService.findBasketById(basketId);
-                List<Livre> updatedLivres = basketAfterUpdate.getLivres();
-
-                if (updatedLivres.stream().anyMatch(l -> l.getId().equals(livre.getId()))) {
-                    destination = "/UpdateBasketErrorServlet";
-                } else {
-                    session.setAttribute("livres", basketAfterUpdate.getLivres());
-                    destination = "/UpdateBasketSuccessServlet";
-                }
+            if (livre == null ) {
+                destination = "/ErrorBookServlet";
             } else {
-                destination = "/BasketErrorServlet";
+
+                List<Basket> baskets = basketService.findAllBaskets();
+                for (Basket basket : baskets) {
+                    List<Livre> livres = basket.getLivres();
+                    livres.stream().filter(l -> l.getId().equals(bookId)).findFirst().ifPresent(livres::remove);
+                    basket.setLivres(livres);
+                    basketService.updateBasket(basket);
+                }
+
+                livreService.deleteLivre(livre);
+                Livre deletedLivre = livreService.findLivreById(bookId);
+
+                if (deletedLivre != null) {
+                    destination = "/DeleteBookErrorServlet";
+                } else {
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
+                    destination = "/DeleteBookSuccessServlet";
+                }
             }
         }
 

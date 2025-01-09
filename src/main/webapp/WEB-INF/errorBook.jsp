@@ -1,6 +1,6 @@
 <%--
-    Document   : loginRequired
-    Created on : Dec 28, 2024, 1:48:35 PM
+    Document   : errorBook
+    Created on : Jan 7, 2025, 6:58:30 PM
     Author     : Evgenii Morgunov
 --%>
 
@@ -13,12 +13,11 @@
 <!DOCTYPE html>
 <fmt:setLocale value="${locale}"/>
 <fmt:bundle basename="ressources_i18n.Messages_${locale}">
-<html lang="en">
-
+    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><fmt:message key="loginRequired.title"/></title>
+        <title><fmt:message key="errorBook.title"/></title>
         <link rel="stylesheet" href="styles/styleJspPage.css">
     </head>
     <body>
@@ -38,7 +37,7 @@
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
-                <form method="get" action="LoginRequiredServlet">
+                <form method="get" action="ErrorBookServlet">
                     <button type="submit" name="locale" value="en_US" class="locale-btn">EN</button>
                     <button type="submit" name="locale" value="fr_FR" class="locale-btn">FR</button>
                 </form>
@@ -54,14 +53,11 @@
         </div>
     </header>
     <main>
-        <h1><fmt:message key="loginRequired.title"/></h1>
-        <section class="section-block white-bg">
+        <h1><fmt:message key="errorBook.title"/></h1>
+        <section class="account-block white-bg">
             <div class="text-block text-block-correct">
-                <h3><fmt:message key="loginRequired.message"/></h3>
-                <div class="btn-basket">
-                    <a class="btn" href="AccountServlet?locale=<%= locale %>"><fmt:message key="loginRequired.buttonAccount"/></a>
-                    <a class="btn" href="CatalogServlet?locale=<%= locale %>"><fmt:message key="loginRequired.buttonCatalog"/></a>
-                </div>
+                <h3><fmt:message key="errorBook.message"/></h3>
+                <a class="btn" href="AdminPortalServlet?locale=<%= locale %>"><fmt:message key="errorBook.returnButton"/></a>
             </div>
         </section>
     </main>
@@ -72,5 +68,4 @@
 </fmt:bundle>
 <script src="scripts/scriptJspPage.js"></script>
 </body>
-
 </html>

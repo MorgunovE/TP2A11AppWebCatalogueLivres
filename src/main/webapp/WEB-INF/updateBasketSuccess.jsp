@@ -1,7 +1,7 @@
 <%--
-    Document   : bookAlreadyInBasket
-    Created on : Dec 28, 2024, 1:55:25 PM
-    Author     : 1
+    Document   : updateBasketSuccess
+    Created on : Jan 7, 2025, 12:06:04 PM
+    Author     : Evgenii Morgunov
 --%>
 
 <%@ page import="control.LocaleUtil" %>
@@ -19,7 +19,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><fmt:message key="bookAlreadyInBasket.title"/></title>
+        <title><fmt:message key="updateBasketSuccess.title"/></title>
         <link rel="stylesheet" href="styles/styleJspPage.css">
     </head>
     <body>
@@ -39,7 +39,7 @@
                         <li><a href="AdminServlet?locale=<%= locale %>"><fmt:message key="header.administration"/></a></li>
                     </ul>
                 </nav>
-                <form method="get" action="BookAlreadyInBasketServlet">
+                <form method="get" action="UpdateBasketSuccessServlet">
                     <button type="submit" name="locale" value="en_US" class="locale-btn">EN</button>
                     <button type="submit" name="locale" value="fr_FR" class="locale-btn">FR</button>
                 </form>
@@ -55,11 +55,15 @@
         </div>
     </header>
     <main>
-        <h1><fmt:message key="bookAlreadyInBasket.title"/></h1>
+        <h1><fmt:message key="updateBasketSuccess.title"/></h1>
         <section class="section-block white-bg">
             <div class="text-block text-block-card">
-                <h3><fmt:message key="bookAlreadyInBasket.message"/></h3>
-                <a class="btn" href="CatalogServlet?locale=<%= locale %>"><fmt:message key="bookAlreadyInBasket.buttonCatalog"/></a>
+                <h3><fmt:message key="updateBasketSuccess.message"/></h3>
+                <div class="btn-basket">
+                    <a class="btn" href="CheckoutServlet?locale=<%= locale %>"><fmt:message key="updateBasketSuccess.buttonCheckout"/></a>
+                    <a class="btn" href="CatalogServlet?locale=<%= locale %>"><fmt:message key="updateBasketSuccess.buttonCatalog"/></a>
+                    <a class="btn" href="AccountServlet?locale=<%= locale %>"><fmt:message key="updateBasketSuccess.buttonAccount"/></a>
+                </div>
             </div>
         </section>
         <section class="account-block grey-bg">

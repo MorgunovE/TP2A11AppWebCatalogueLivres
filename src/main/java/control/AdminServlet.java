@@ -34,20 +34,6 @@ public class AdminServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        /**
-         * Locale de l'utilisateur.
-         */
-        Locale locale = request.getLocale();
-
-        /**
-         * Langue de l'utilisateur.
-         */
-        request.setAttribute("Language", locale.getLanguage());
-
-        RequestDispatcher rd = request
-                .getRequestDispatcher("/jsp/admin.jsp");
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,7 +49,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
         request.getRequestDispatcher("/jsp/admin.jsp")
                 .forward(request, response);
@@ -91,7 +77,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
-        LocaleUtil.setLocaleAttributes(request);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
         dispatcher.forward(request, response);
     }
 
