@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"control"},{"l":"DAL"},{"l":"edu.a11.appwebcataloguelivres.tp2a11appwebcataloguelivres"},{"l":"edu.a11.appwebcataloguelivres.tp2a11appwebcataloguelivres.resources"},{"l":"model"},{"l":"service"}];updateSearchResults();
