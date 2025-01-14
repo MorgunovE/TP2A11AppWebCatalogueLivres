@@ -5,6 +5,8 @@ Ce projet est une application web Java qui permet de gérer un catalogue de livr
 
 ## Dépôt GitHub
 Le code source de ce projet est disponible sur GitHub : [TP2A11AppWebCatalogueLivres](https://github.com/MorgunovE/TP2A11AppWebCatalogueLivres)
+Aperçu : [index.html] (https://morgunove.github.io/TP2A11AppWebCatalogueLivres/src/main/webapp/index.html)
+Javadoc : [javadoc](https://morgunove.github.io/TP2A11AppWebCatalogueLivres/docs/index.html)
 
 ## Fonctionnalités
 - Ajout de livres au catalogue.
