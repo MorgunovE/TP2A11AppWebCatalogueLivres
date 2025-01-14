@@ -112,6 +112,14 @@
         <servlet-name>DeleteAccountServlet</servlet-name>
         <servlet-class>control.DeleteAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountErrorServlet</servlet-name>
+        <servlet-class>control.DeleteAccountErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountSuccessServlet</servlet-name>
+        <servlet-class>control.DeleteAccountSuccessServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/CatalogServlet</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>DeleteAccountServlet</servlet-name>
         <url-pattern>/DeleteAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountErrorServlet</servlet-name>
+        <url-pattern>/DeleteAccountErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountSuccessServlet</servlet-name>
+        <url-pattern>/DeleteAccountSuccessServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

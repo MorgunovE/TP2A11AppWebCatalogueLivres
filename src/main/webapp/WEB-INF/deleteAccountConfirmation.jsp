@@ -1,7 +1,7 @@
 <%-- 
-    Document   : deleteAccount
+    Document   : deleteAccountConfirmation
     Created on : Jan 2, 2025, 2:35:41 PM
-    Author     : user
+    Author     : Rustam Zholdubayev
 --%>
 
 <%@ page import="control.LocaleUtil" %>
@@ -57,7 +57,7 @@
             <div class="text-block text-block-correct">
                 <h3><fmt:message key="accountDeleteConfirm.message"/></h3>
                 <form method="POST" action="DeleteAccountServlet">
-                    <input type="hidden" name="id" value="${userId}">
+                    <input type="hidden" name="locale" value="${locale}">
                     <button type="submit"><fmt:message key="accountDeleteConfirm.deleteAccountButton"/></button>
                 </form><br>
                 <form method="GET" action="AccountPortalServlet">

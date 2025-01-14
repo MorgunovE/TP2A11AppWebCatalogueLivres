@@ -1,7 +1,7 @@
 <%-- 
     Document   : deleteAccountError
     Created on : Jan 4, 2025, 5:34:46 PM
-    Author     : user
+    Author     : Rustam Zholdubayev
 --%>
 
 <%@ page import="control.LocaleUtil" %>

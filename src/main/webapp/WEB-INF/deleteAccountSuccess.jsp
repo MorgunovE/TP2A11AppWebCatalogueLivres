@@ -1,3 +1,9 @@
+<%--
+    Document   : deleteAccountSuccess
+    Created on : Jan 4, 2025, 5:34:46 PM
+    Author     : Rustam Zholdubayev
+--%>
+
 <%@ page import="control.LocaleUtil" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

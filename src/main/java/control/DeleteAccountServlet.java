@@ -8,7 +8,6 @@ import model.User;
 import service.UserService;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ import service.BasketService;
 
 /**
  *
- * @author user
+ * @author Rustam Zholdubayev
  */
 public class DeleteAccountServlet extends HttpServlet {
     private BasketService basketService;
@@ -59,29 +58,8 @@ public class DeleteAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             // Get user id
-        HttpSession session = request.getSession();
-        String locale = request.getParameter("locale");
-        if (locale != null) {
-            session.setAttribute("locale", locale);
-        }
-        Long userId = (Long) session.getAttribute("id");
-
-        if (userId == null) {
-            //send to login required servlet
-            response.sendRedirect("AccountServlet");
-        } else {
-            // Find the user
-            User user = userService.findUserById(userId);
-            if (user == null) {
-            // User not found            
-            request.getRequestDispatcher("WEB-INF/deleteAccountError.jsp").forward(request, response);
-        } else {
-                request.setAttribute("userId", user.getId());
-                request.getRequestDispatcher("WEB-INF/deleteAccountConfirmation.jsp").forward(request, response);
-            }
-                  
-       
-        }
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
+        request.getRequestDispatcher("WEB-INF/deleteAccountConfirmation.jsp").forward(request, response);
 
     }
 
@@ -98,38 +76,46 @@ public class DeleteAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Get user id
-        long userId = Long.parseLong(request.getParameter("id"));
-
-        User user = userService.findUserById(userId);
-          if (user == null) {
-            // User not found
-            request.setAttribute("errorMessage", "User not found");
-            request.getRequestDispatcher("WEB-INF/deleteAccountError.jsp").forward(request, response);
+        String locale = LocaleUtil.setLocaleAttributes(request);
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("id");
+        if (userId == null) {
+            //send to login required servlet
+            response.sendRedirect("AccountServlet");
         } else {
-            // Find the user's baskets
-            List<Basket> baskets = basketService.findBasketsByUserId(userId);
-            // Delete all baskets associated with the user
-            for (Basket basket : baskets) {
-                basketService.deleteBasket(basket);
-            }
+            // Find the user
+            User user = userService.findUserById(userId);
+            if (user == null) {
+                // User not found
+                request.getRequestDispatcher("DeleteAccountErrorServlet").forward(request, response);
+            } else {
+                // Find the user's baskets
+                List<Basket> baskets = basketService.findBasketsByUserId(userId);
+                // Delete all baskets associated with the user
+                for (Basket basket : baskets) {
+                    basketService.deleteBasket(basket);
+                }
 
-            // Delete the user
-            userService.deleteUser(user);
-        /*    User deletedUser = userService.findUserById(userId);
-            if (deletedUser != null) {
-                // User was not successfully deleted
-                request.setAttribute("errorMessage", "Error deleting user");
-                request.getRequestDispatcher("WEB-INF/deleteAccountError.jsp").forward(request, response);
-                return; // Exit the method if user deletion failed
-            }*/
-            HttpSession session = request.getSession(false);
+                // Delete the user
+                userService.deleteUser(user);
+                User deletedUser = userService.findUserById(userId);
+                if(deletedUser != null) {
+                    request.getRequestDispatcher("DeleteAccountErrorServlet").forward(request, response);
+                } else {
+                    session = request.getSession(false);
                     if (session != null) {
                         session.invalidate();
                     }
+                    request.getRequestDispatcher("DeleteAccountSuccessServlet").forward(request, response);
 
-            // Send to success delete page
-            request.getRequestDispatcher("WEB-INF/deleteAccountSuccess.jsp").forward(request, response);
+                }
+
+            }
+
         }
+
+
+
     }   
           
     /**
