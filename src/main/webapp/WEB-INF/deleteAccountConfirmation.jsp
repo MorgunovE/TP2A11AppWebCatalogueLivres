@@ -60,7 +60,7 @@
                     <input type="hidden" name="locale" value="${locale}">
                     <button type="submit"><fmt:message key="accountDeleteConfirm.deleteAccountButton"/></button>
                 </form><br>
-                <form method="GET" action="AccountPortalServlet">
+                <form method="GET" action="AccountPortalServlet?locale=<%= locale %>">
                     <input type="hidden" name="locale" value="${locale}">
                     <button type="submit"><fmt:message key="accountDeleteConfirm.cancelButton"/></button>
                 </form>

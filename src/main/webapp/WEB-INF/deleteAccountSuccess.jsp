@@ -56,7 +56,7 @@
         <section class="account-block white-bg">
             <div class="text-block text-block-correct">
                 <h3><fmt:message key="accountDeleteAccountSuccess.message"/></h3>
-                <a class="btn" href="AccountServlet"><fmt:message key="accountErrorCreation.returnButton"/></a>
+                <a class="btn" href="AccountServlet?locale=<%= locale %>"><fmt:message key="accountErrorCreation.returnButton"/></a>
             </div>
         </section>
     </main>

@@ -52,13 +52,21 @@
         </div>
     </header>
     <main>
-        
+        <h1><fmt:message key="accountErrorDeleteAccount.title"/></h1>
+        <section class="account-block white-bg">
+            <div class="text-block text-block-correct">
+                <h3><fmt:message key="accountErrorDeleteAccount.message"/></h3>
+                <a class="btn" href="AccountPortalServlet?locale=<%= locale %>"><fmt:message key="accountErrorCreation.returnButton"/></a>
+            </div>
+        </section>
     </main>
-    <h3>Something is wrong</h3>
-    <a href="index.html">Go to main page</a>
+    <footer>
+        <p><fmt:message key="footer.copyright"/> <strong><fmt:message key="footer.year"/></strong>
+            <fmt:message key="footer.message"/></p>
+    </footer>
+</fmt:bundle>
+<script src="scripts/scriptJspPage.js"></script>
 </body>
-  </fmt:bundle>
 </html>
-
 
 
