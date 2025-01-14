@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Admin servlet
  * @author Evgenii Morgunov
  */
 public class AdminServlet extends HttpServlet {
@@ -65,11 +65,13 @@ public class AdminServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the username and password from the request
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 
         String destination = null;
 
+        // Check if the username and password are correct
         if (USERNAME.equals(userName) && PASSWORD.equals(password)) {
             destination = "/AdminPortalServlet";
         } else {

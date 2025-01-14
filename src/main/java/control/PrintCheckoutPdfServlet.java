@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for printing checkout pdf
  * @author Evgenii Morgunov
  */
 public class PrintCheckoutPdfServlet extends HttpServlet {

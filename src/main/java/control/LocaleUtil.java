@@ -4,14 +4,20 @@
  */
 package control;
 
-/**
- *
- * @author Evgenii Morgunov
- */
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
+/**
+ * Locale utility class
+ * @author Evgenii Morgunov
+ */
 public class LocaleUtil {
+
+    /**
+     * Set locale attributes
+     * @param request servlet request
+     * @return locale
+     */
     public static String setLocaleAttributes(HttpServletRequest request) {
         Locale loc = request.getLocale();
         String locale = request.getParameter("locale");

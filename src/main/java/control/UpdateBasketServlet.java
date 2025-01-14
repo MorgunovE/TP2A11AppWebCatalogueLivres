@@ -21,10 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for updating a basket
  * @author Evgenii Morgunov
  */
 public class UpdateBasketServlet extends HttpServlet {
+    // Services
     private BasketService basketService;
     private LivreService livreService;
 
@@ -62,6 +63,8 @@ public class UpdateBasketServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
+
+        // Get the user id from the session
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("id");
         Long basketId = Long.parseLong(request.getParameter("basketId"));

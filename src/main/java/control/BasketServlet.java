@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for basket
  * @author Evgenii Morgunov
  */
 public class BasketServlet extends HttpServlet {
@@ -67,6 +67,7 @@ public class BasketServlet extends HttpServlet {
 
         String destination = null;
 
+        // Get the user id and basket id from the session
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("id");
         Long basketId = (Long) session.getAttribute("basketId");
@@ -102,6 +103,13 @@ public class BasketServlet extends HttpServlet {
 
     }
 
+    /**
+     * Updates the basket and sets the destination
+     * @param session the session
+     * @param basketId the basket id
+     * @param livre the book
+     * @return the destination
+     */
     private String updateBasketAndSetDestination(HttpSession session, Long basketId, Livre livre) {
         Basket basket = basketService.findBasketById(basketId);
         List<Livre> livres = basket.getLivres();

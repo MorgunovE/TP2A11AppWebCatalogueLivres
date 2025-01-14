@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for account error creation
  * @author Evgenii Morgunov
  */
 public class AccountErrorCreationServlet extends HttpServlet {

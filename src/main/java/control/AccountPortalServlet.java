@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for account portal
  * @author Evgenii Morgunov
  */
 public class AccountPortalServlet extends HttpServlet {
@@ -56,6 +56,8 @@ public class AccountPortalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
+
+        // Get user data from session
         HttpSession session = request.getSession();
         String name = (String) session.getAttribute("name");
         String familyName = (String) session.getAttribute("familyName");

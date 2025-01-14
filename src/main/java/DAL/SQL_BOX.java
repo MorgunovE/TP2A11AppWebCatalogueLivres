@@ -1,7 +1,7 @@
 package DAL;
 
 /**
- *
+ * SQL_BOX class. Contains all SQL queries. Used in the DAO classes.
  * @author Evgenii Morgunov
  */
 

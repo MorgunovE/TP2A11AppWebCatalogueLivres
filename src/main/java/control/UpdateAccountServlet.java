@@ -17,10 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for updating account information
  * @author Evgenii Morgunov
  */
 public class UpdateAccountServlet extends HttpServlet {
+    // Services
     private UserService userService;
 
     @Override
@@ -120,12 +121,18 @@ public class UpdateAccountServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Updates the user
+     * @param request the request
+     * @param user the user
+     * @param session the session
+     */
     private void updateUser(HttpServletRequest request, User user, HttpSession session) {
         user.setName(request.getParameter("name"));
         user.setFamilyName(request.getParameter("familyName"));
         user.setTel(request.getParameter("tel"));
         user.setEmail(request.getParameter("email"));
-        
+
         session.setAttribute("name", user.getName());
         session.setAttribute("familyName", user.getFamilyName());
         session.setAttribute("email", user.getEmail());

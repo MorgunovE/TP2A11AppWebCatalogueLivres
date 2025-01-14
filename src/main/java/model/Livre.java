@@ -5,7 +5,7 @@
 package model;
 
 /**
- *
+ * Classe représentant un livre dans le système.
  * @author Evgenii Morgunov
  */
 

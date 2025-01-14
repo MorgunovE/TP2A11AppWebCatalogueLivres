@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for deleting a book
  * @author Evgenii Morgunov
  */
 public class DeleteBookServlet extends HttpServlet {

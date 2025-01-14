@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlideShow();
     });
 
+    // Navigation dans le diaporama
     nextBtn.addEventListener('click', () => {
         stopSlideShow();
         showSlide(currentIndex + 1);
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentIndex); // Afficher la première diapositive
     startSlideShow(); // Démarrer le diaporama
 
+    // Gestion des boutons de fermeture et de retour
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
             button.parentElement.parentElement.style.display = 'none';
@@ -63,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Gestion des boutons de fermeture et de retour
     returnButtons.forEach(button => {
         button.addEventListener('click', () => {
             button.parentElement.parentElement.style.display = 'none';
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Gestion de la soumission du formulaire
     document.querySelector('.submit-btn').addEventListener('click', (e) => {
         let isValid = true;
 
@@ -82,12 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
             isValid = false;
         }
 
+        // Format du numéro de téléphone : 10 chiffres
         const phonePattern = /^[0-9]{10}$/;
         if (!phonePattern.test(phoneInput.value.trim())) {
             phoneInput.classList.add('invalid');
             isValid = false;
         }
 
+        // Format de l'adresse email
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(emailInput.value.trim())) {
             emailInput.classList.add('invalid');
@@ -106,15 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Gestion du menu mobile
     const menuToggle = document.querySelector('.menu-toggle');
     const menuNav = document.querySelector('.menu-nav-mobile');
     const menuLinks = document.querySelectorAll('.menu-nav-mobile a');
 
+    // Ouverture et fermeture du menu mobile
     menuToggle.addEventListener('click', () => {
         menuNav.classList.toggle('expanded');
         menuToggle.classList.toggle('expanded');
     });
 
+    // Fermeture du menu mobile lorsqu'un lien est cliqué
     menuLinks.forEach(link => {
         link.addEventListener('click', () => {
             menuNav.classList.remove('expanded');
@@ -122,14 +131,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Désactivation du scroll lorsqu'un modal est ouvert
     function disableScroll() {
         document.body.classList.add('no-scroll');
     }
 
+    // Réactivation du scroll lorsqu'un modal est fermé
     function enableScroll() {
         document.body.classList.remove('no-scroll');
     }
 
+    // Fermeture des modals lorsqu'on clique en dehors de leur contenu
     const modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
         modal.addEventListener('click', (event) => {

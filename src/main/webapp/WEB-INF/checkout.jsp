@@ -11,10 +11,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String locale = LocaleUtil.setLocaleAttributes(request);
-    String name = (String) session.getAttribute("name");
-    String familyName = (String) session.getAttribute("familyName");
-    Long userId = (Long) session.getAttribute("id");
-    Long basketId = (Long) session.getAttribute("basketId");
 %>
 <!DOCTYPE html>
 <fmt:setLocale value="${locale}"/>

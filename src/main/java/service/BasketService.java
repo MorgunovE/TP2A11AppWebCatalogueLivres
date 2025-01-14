@@ -5,7 +5,7 @@
 package service;
 
 /**
- *
+ * Basket Service class for managing basket operations.
  * @author Evgenii Morgunov
  */
 

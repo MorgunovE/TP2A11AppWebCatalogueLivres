@@ -5,7 +5,7 @@
 package DAL;
 
 /**
- *
+ * Interface IDAO. Cette interface définit les méthodes CRUD.
  * @author Evgenii Morgunov
  */
 

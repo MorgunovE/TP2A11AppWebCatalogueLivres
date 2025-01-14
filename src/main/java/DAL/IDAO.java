@@ -1,7 +1,7 @@
 package DAL;
 
 /**
- *
+ * Interface for Data Access Object (DAO)
  * @author Evgenii Morgunov
  */
 

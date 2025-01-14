@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for account update error
  * @author Evgenii Morgunov
  */
 public class AccountUpdateErrorServlet extends HttpServlet {

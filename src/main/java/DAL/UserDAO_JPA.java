@@ -5,7 +5,7 @@
 package DAL;
 
 /**
- *
+ * UserDAO_JPA class for user data access object with JPA
  * @author Evgenii Morgunov
  */
 

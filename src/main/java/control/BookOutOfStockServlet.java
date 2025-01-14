@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for book out of stock
  * @author Evgenii Morgunov
  */
 public class BookOutOfStockServlet extends HttpServlet {
