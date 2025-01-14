@@ -669,6 +669,10 @@ footer p {
     padding-bottom: 10rem !important;
 }
 
+.pt-10 {
+    padding-top: 5rem !important;
+}
+
 /* Styles for the card */
 .filter-form .card,
 .create-form .card,
