@@ -78,9 +78,9 @@
                         <strong><fmt:message key="accountPortal.email"/>:</strong>
                         <%= email %></p>
                     <div class="btn-account-portal">
-                        <a class="btn" href="UpdateAccountServlet?id=<%= session.getAttribute("id") %>&locale=<%= locale %>">
+                        <a class="btn" href="UpdateAccountServlet?locale=<%= locale %>">
                             <fmt:message key="accountPortal.buttonUpdate"/></a>
-                        <a class="btn" href="DeleteAccountServlet?id=<%= session.getAttribute("id") %>&locale=<%= locale %>">
+                        <a class="btn" href="DeleteAccountServlet?locale=<%= locale %>">
                             <fmt:message key="accountPortal.buttonDelete"/></a>
                     </div>
                 </div>
