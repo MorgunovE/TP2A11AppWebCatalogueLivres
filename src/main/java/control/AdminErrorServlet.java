@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for account update success
  * @author Evgenii Morgunov
  */
 public class AdminErrorServlet extends HttpServlet {

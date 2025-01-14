@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Admin Portal Servlet
  * @author Evgenii Morgunov
  */
 public class AdminPortalServlet extends HttpServlet {
@@ -58,6 +58,7 @@ public class AdminPortalServlet extends HttpServlet {
 
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
+        // If the attribute "livres" is not set, then set it
         if (request.getAttribute("livres") == null) {
             List<Livre> livres = livreService.findAllLivres();
             request.setAttribute("livres", livres);
@@ -80,6 +81,7 @@ public class AdminPortalServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        // If the action is "filter", then filter the books
         if ("filter".equals(action)) {
             String filterType = request.getParameter("filterType");
             String filterValue = request.getParameter("filterValue");
@@ -110,6 +112,7 @@ public class AdminPortalServlet extends HttpServlet {
             }
         }
 
+        // If the action is "addBook", then add a book
         if ("addBook".equals(action)) {
             String title = request.getParameter("title");
             String author = request.getParameter("author");

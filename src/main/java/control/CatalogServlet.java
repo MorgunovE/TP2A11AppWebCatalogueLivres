@@ -19,24 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for catalog
  * @author Evgenii Morgunov
  */
-
-/**
- * Servlet pour afficher le catalogue des livres.
- * Cette servlet utilise un service pour accéder aux données des livres.
- * Elle affiche le catalogue des livres et permet de filtrer les livres par titre, auteur, genre ou prix.
- * Elle affiche également le nom de l'utilisateur connecté.
- * Elle affiche les informations de localisation de l'utilisateur.
- * Elle utilise un fichier JSP pour afficher les données.
- * Elle utilise un fichier de propriétés pour les messages d'erreur.
- * Elle utilise un fichier de propriétés pour les messages de succès.
- * Elle utilise un fichier de propriétés pour les messages d'information.
- * Elle utilise un fichier de propriétés pour les messages de confirmation.
- * Elle utilise un fichier de propriétés pour les messages d'avertissement.
- */
 public class CatalogServlet extends HttpServlet {
+    // Services
     private LivreService livreService;
 
     @Override
@@ -59,6 +46,10 @@ public class CatalogServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
     }
 
+    /**
+     * Set user and locale attributes
+     * @param request servlet request
+     */
     private void setUserAndLocaleAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
@@ -66,7 +57,6 @@ public class CatalogServlet extends HttpServlet {
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -103,6 +93,8 @@ public class CatalogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+
+        // Filter
         if ("filter".equals(action)) {
             String filterType = request.getParameter("filterType");
             String filterValue = request.getParameter("filterValue");

@@ -1,7 +1,7 @@
 package DAL;
 
 /**
- *
+ * Persistence Unit pour le Catalogue de la bibliothèque
  * @author Evgenii Morgunov
  */
 

@@ -5,7 +5,7 @@
 package DAL;
 
 /**
- *
+ * EM_Provider class for entity manager provider singleton
  * @author Evgenii Morgunov
  */
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for login required
  * @author Evgenii Morgunov
  */
 public class LoginRequiredServlet extends HttpServlet {

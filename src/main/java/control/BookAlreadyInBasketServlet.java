@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for book already in basket
  * @author Evgenii Morgunov
  */
 public class BookAlreadyInBasketServlet extends HttpServlet {

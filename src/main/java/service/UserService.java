@@ -7,7 +7,6 @@ package service;
 /**
  * Service pour gérer les opérations liées aux utilisateurs.
  * Cette classe utilise un DAO pour accéder aux données des utilisateurs.
- *
  * @author Evgenii Morgunov
  */
 

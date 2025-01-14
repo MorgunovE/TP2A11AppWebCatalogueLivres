@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for delete book error
  * @author Evgenii Morgunov
  */
 public class ErrorBookServlet extends HttpServlet {

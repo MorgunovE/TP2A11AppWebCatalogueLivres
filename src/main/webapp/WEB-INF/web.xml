@@ -109,6 +109,14 @@
         <servlet-class>control.UpdateAccountServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AccountUpdateErrorServlet</servlet-name>
+        <servlet-class>control.AccountUpdateErrorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountUpdateSuccessServlet</servlet-name>
+        <servlet-class>control.AccountUpdateSuccessServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteAccountServlet</servlet-name>
         <servlet-class>control.DeleteAccountServlet</servlet-class>
     </servlet>
@@ -227,6 +235,14 @@
     <servlet-mapping>
         <servlet-name>UpdateAccountServlet</servlet-name>
         <url-pattern>/UpdateAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountUpdateErrorServlet</servlet-name>
+        <url-pattern>/AccountUpdateErrorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountUpdateSuccessServlet</servlet-name>
+        <url-pattern>/AccountUpdateSuccessServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteAccountServlet</servlet-name>

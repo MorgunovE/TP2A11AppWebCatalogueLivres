@@ -5,7 +5,7 @@
 package DAL;
 
 /**
- *
+ * BasketDAO_JPA class for data access object (DAO) pattern.
  * @author Evgenii Morgunov
  */
 import jakarta.persistence.EntityManager;

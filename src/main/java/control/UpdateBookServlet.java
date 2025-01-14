@@ -18,10 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for updating a book
  * @author Evgenii Morgunov
  */
 public class UpdateBookServlet extends HttpServlet {
+    // Services
     private LivreService livreService;
 
     @Override
@@ -60,6 +61,7 @@ public class UpdateBookServlet extends HttpServlet {
         String bookIdParam = request.getParameter("id");
         String destination;
 
+        // If the bookId is not set, then set the destination to the error page
         if (bookIdParam == null || bookIdParam.isEmpty()) {
             destination = "/ErrorBookServlet";
         } else {

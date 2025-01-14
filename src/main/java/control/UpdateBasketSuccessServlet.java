@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet for update basket success
  * @author Evgenii Morgunov
  */
 public class UpdateBasketSuccessServlet extends HttpServlet {

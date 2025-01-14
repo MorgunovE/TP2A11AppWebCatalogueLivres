@@ -22,10 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for checkout
  * @author Evgenii Morgunov
  */
 public class CheckoutServlet extends HttpServlet {
+    // Services
     private BasketService basketService;
 
     @Override
@@ -48,7 +49,7 @@ public class CheckoutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
 
-
+        // Get user id and basket id
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("id");
         Long basketId = (Long) session.getAttribute("basketId");

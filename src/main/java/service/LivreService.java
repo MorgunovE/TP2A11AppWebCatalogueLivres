@@ -3,7 +3,6 @@ package service;
 /**
  * Service pour gérer les opérations liées aux livres.
  * Cette classe utilise un DAO pour accéder aux données des livres.
- *
  * @autor Evgenii Morgunov
  */
 

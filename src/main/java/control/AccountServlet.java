@@ -21,10 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Servlet for account portal entering
  * @author Evgenii Morgunov
  */
 public class AccountServlet extends HttpServlet {
+
+    // Services
     private UserService userService;
     private BasketService basketService;
 
@@ -83,6 +85,7 @@ public class AccountServlet extends HttpServlet {
 
         String destination = null;
 
+        // Create user
         if ("create".equals(action)) {
             String name = request.getParameter("name");
             String familyName = request.getParameter("familyName");
@@ -120,7 +123,7 @@ public class AccountServlet extends HttpServlet {
             }
         }
 
-
+        // Find user by email
         if("findUsersByEmail".equals(action)) {
             String email = request.getParameter("email_user");
             List<User> users = userService.findUsersByEmail(email);

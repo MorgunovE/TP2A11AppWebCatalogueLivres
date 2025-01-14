@@ -5,7 +5,7 @@
 package model;
 
 /**
- *
+ * Classe représentant un panier dans le système.
  * @author Evgenii Morgunov
  */
 

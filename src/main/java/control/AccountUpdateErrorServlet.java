@@ -6,17 +6,17 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Locale;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet for book out of stock
+ * Servlet for account update error
  * @author Evgenii Morgunov
  */
-public class BookOutOfStockServlet extends HttpServlet {
+public class AccountUpdateErrorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,11 +31,8 @@ public class BookOutOfStockServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
-
-        request
-                .getRequestDispatcher("WEB-INF/bookOutOfStock.jsp")
-                .forward(request, response);
-
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/accountUpdateError.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +47,6 @@ public class BookOutOfStockServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         processRequest(request, response);
     }
 

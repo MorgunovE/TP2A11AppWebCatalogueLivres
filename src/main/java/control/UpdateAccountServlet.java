@@ -4,15 +4,11 @@
  */
 package control;
 
-import model.Basket;
-import model.Livre;
-import service.BasketService;
-import service.LivreService;
+import model.User;
+import service.UserService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,18 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet for updating a basket
+ * Servlet for updating account information
  * @author Evgenii Morgunov
  */
-public class UpdateBasketServlet extends HttpServlet {
+public class UpdateAccountServlet extends HttpServlet {
     // Services
-    private BasketService basketService;
-    private LivreService livreService;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
-        basketService = (BasketService) getServletContext().getAttribute("basketService");
-        livreService = (LivreService) getServletContext().getAttribute("livreService");
+        userService = (UserService) getServletContext().getAttribute("userService");
     }
 
     /**
@@ -47,7 +41,7 @@ public class UpdateBasketServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,41 +57,19 @@ public class UpdateBasketServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
-
-        // Get the user id from the session
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("id");
-        Long basketId = Long.parseLong(request.getParameter("basketId"));
-        Long bookId = Long.parseLong(request.getParameter("bookId"));
         String destination;
 
         if (userId == null) {
             destination = "/LoginRequiredServlet";
-        } else if( basketId == 0) {
-            destination = "/BasketErrorServlet";
-        } else if (bookId == 0) {
-            destination = "/BasketErrorServlet";
         } else {
-            Basket basket = basketService.findBasketById(basketId);
-            Livre livre = livreService.findLivreById(bookId);
-            List<Livre> livres = basket.getLivres();
-
-            if (livre != null && livres.stream().anyMatch(l -> l.getId().equals(livre.getId()))) {
-                livres.stream().filter(l -> l.getId().equals(livre.getId())).findFirst().ifPresent(livres::remove);
-                basket.setLivres(livres);
-                basketService.updateBasket(basket);
-
-                Basket basketAfterUpdate = basketService.findBasketById(basketId);
-                List<Livre> updatedLivres = basketAfterUpdate.getLivres();
-
-                if (updatedLivres.stream().anyMatch(l -> l.getId().equals(livre.getId()))) {
-                    destination = "/UpdateBasketErrorServlet";
-                } else {
-                    session.setAttribute("livres", basketAfterUpdate.getLivres());
-                    destination = "/UpdateBasketSuccessServlet";
-                }
+            User user = userService.findUserById(userId);
+            if (user == null) {
+                destination = "/AccountErrorServlet";
             } else {
-                destination = "/BasketErrorServlet";
+                request.setAttribute("user", user);
+                destination = "WEB-INF/updateAccount.jsp";
             }
         }
 
@@ -116,8 +88,57 @@ public class UpdateBasketServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setAttribute("locale", LocaleUtil.setLocaleAttributes(request));
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("id");
+        String destination;
+
+        if (userId == null) {
+            destination = "/LoginRequiredServlet";
+        } else {
+            User user = userService.findUserById(userId);
+            if (user == null) {
+                destination = "/AccountErrorServlet";
+            } else {
+                String email = request.getParameter("email");
+                if (!user.getEmail().equals(email)) {
+                    if (!userService.findUsersByEmail(email).isEmpty()) {
+                        destination = "/AccountUpdateErrorServlet";
+                    } else {
+                        updateUser(request, user, session);
+                        userService.updateUser(user);
+                        destination = "/AccountUpdateSuccessServlet";
+                    }
+                } else {
+                    updateUser(request, user, session);
+                    userService.updateUser(user);
+                    destination = "/AccountUpdateSuccessServlet";
+                }
+            }
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
+        dispatcher.forward(request, response);
     }
+
+    /**
+     * Updates the user
+     * @param request the request
+     * @param user the user
+     * @param session the session
+     */
+    private void updateUser(HttpServletRequest request, User user, HttpSession session) {
+        user.setName(request.getParameter("name"));
+        user.setFamilyName(request.getParameter("familyName"));
+        user.setTel(request.getParameter("tel"));
+        user.setEmail(request.getParameter("email"));
+
+        session.setAttribute("name", user.getName());
+        session.setAttribute("familyName", user.getFamilyName());
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("tel", user.getTel());
+    }
+
 
     /**
      * Returns a short description of the servlet.

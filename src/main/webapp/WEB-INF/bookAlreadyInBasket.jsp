@@ -1,7 +1,7 @@
 <%--
     Document   : bookAlreadyInBasket
     Created on : Dec 28, 2024, 1:55:25 PM
-    Author     : 1
+    Author     : Evgenii Morgunov
 --%>
 
 <%@ page import="control.LocaleUtil" %>

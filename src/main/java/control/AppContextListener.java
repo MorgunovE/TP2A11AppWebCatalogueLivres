@@ -12,7 +12,7 @@ import service.LivreService;
 import service.UserService;
 
 /**
- *
+ * Application Lifecycle Listener implementation class AppContextListener
  * @author Evgenii Morgunov
  */
 @WebListener

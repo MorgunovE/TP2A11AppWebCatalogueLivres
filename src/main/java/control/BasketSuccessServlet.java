@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Basket Success Servlet
  * @author Evgenii Morgunov
  */
 public class BasketSuccessServlet extends HttpServlet {
