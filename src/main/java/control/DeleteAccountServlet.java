@@ -94,7 +94,7 @@ public class DeleteAccountServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    // Сервлет
+    //
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Get user id
@@ -115,6 +115,17 @@ public class DeleteAccountServlet extends HttpServlet {
 
             // Delete the user
             userService.deleteUser(user);
+        /*    User deletedUser = userService.findUserById(userId);
+            if (deletedUser != null) {
+                // User was not successfully deleted
+                request.setAttribute("errorMessage", "Error deleting user");
+                request.getRequestDispatcher("WEB-INF/deleteAccountError.jsp").forward(request, response);
+                return; // Exit the method if user deletion failed
+            }*/
+            HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
 
             // Send to success delete page
             request.getRequestDispatcher("WEB-INF/deleteAccountSuccess.jsp").forward(request, response);
